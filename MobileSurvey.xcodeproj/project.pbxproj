@@ -12,6 +12,9 @@
 		E19A79A31E8366260088F276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19A79A11E8366260088F276 /* Main.storyboard */; };
 		E19A79A51E8366260088F276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19A79A41E8366260088F276 /* Assets.xcassets */; };
 		E19A79A81E8366260088F276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19A79A61E8366260088F276 /* LaunchScreen.storyboard */; };
+		E19A79B11E836A9D0088F276 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A79B01E836A9D0088F276 /* SurveyResponse.swift */; };
+		E19A79B31E839E470088F276 /* BasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A79B21E839E470088F276 /* BasicInfoViewController.swift */; };
+		E1CC19F51E86E82200D2C6B4 /* AddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		E19A79A41E8366260088F276 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E19A79A71E8366260088F276 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E19A79A91E8366260088F276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E19A79B01E836A9D0088F276 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
+		E19A79B21E839E470088F276 /* BasicInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicInfoViewController.swift; sourceTree = "<group>"; };
+		E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,33 @@
 		E19A799C1E8366260088F276 /* MobileSurvey */ = {
 			isa = PBXGroup;
 			children = (
+				E19A79B41E839E580088F276 /* ViewControllers */,
+				E19A79AF1E836A7C0088F276 /* Models */,
 				E19A799D1E8366260088F276 /* AppDelegate.swift */,
-				E19A799F1E8366260088F276 /* ViewController.swift */,
 				E19A79A11E8366260088F276 /* Main.storyboard */,
 				E19A79A41E8366260088F276 /* Assets.xcassets */,
 				E19A79A61E8366260088F276 /* LaunchScreen.storyboard */,
 				E19A79A91E8366260088F276 /* Info.plist */,
 			);
 			path = MobileSurvey;
+			sourceTree = "<group>";
+		};
+		E19A79AF1E836A7C0088F276 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E19A79B01E836A9D0088F276 /* SurveyResponse.swift */,
+				E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E19A79B41E839E580088F276 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E19A799F1E8366260088F276 /* ViewController.swift */,
+				E19A79B21E839E470088F276 /* BasicInfoViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +121,7 @@
 				TargetAttributes = {
 					E19A79991E8366260088F276 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = Q7PU779VFB;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -136,8 +162,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19A79B11E836A9D0088F276 /* SurveyResponse.swift in Sources */,
+				E19A79B31E839E470088F276 /* BasicInfoViewController.swift in Sources */,
 				E19A79A01E8366260088F276 /* ViewController.swift in Sources */,
 				E19A799E1E8366260088F276 /* AppDelegate.swift in Sources */,
+				E1CC19F51E86E82200D2C6B4 /* AddressInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +289,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Q7PU779VFB;
 				INFOPLIST_FILE = MobileSurvey/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcompute.MobileSurvey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,7 +303,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Q7PU779VFB;
 				INFOPLIST_FILE = MobileSurvey/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcompute.MobileSurvey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -299,6 +332,7 @@
 				E19A79AE1E8366260088F276 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
