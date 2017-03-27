@@ -15,6 +15,10 @@ class MoreInfoQuestionsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        _ = SessionExpirationHandler(viewController: self, waitTime: 20)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -1174,12 +1174,23 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                             </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8Y-VJ-WOX">
+                                                <rect key="frame" x="20" y="-10" width="425" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="18" id="3fV-3u-dwt"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="tTE-mB-suF" firstAttribute="top" secondItem="p41-zu-cQ2" secondAttribute="bottom" constant="8" symbolic="YES" id="5Ln-Hw-pPt"/>
                                             <constraint firstItem="fFa-Pd-qrk" firstAttribute="leading" secondItem="7j7-CD-Bjr" secondAttribute="leading" constant="22" id="81K-jR-3TX"/>
                                             <constraint firstItem="U5E-5L-5wJ" firstAttribute="top" secondItem="p41-zu-cQ2" secondAttribute="bottom" constant="8" id="Bo6-3E-8ad"/>
+                                            <constraint firstItem="o8Y-VJ-WOX" firstAttribute="width" secondItem="2da-m3-dty" secondAttribute="width" id="EPO-5c-Vcd"/>
                                             <constraint firstItem="dNC-eH-sDI" firstAttribute="top" secondItem="p41-zu-cQ2" secondAttribute="bottom" constant="8" id="FJH-pa-oEU"/>
+                                            <constraint firstItem="2da-m3-dty" firstAttribute="top" secondItem="o8Y-VJ-WOX" secondAttribute="bottom" constant="2" id="L6T-pP-yxR"/>
                                             <constraint firstItem="2da-m3-dty" firstAttribute="leading" secondItem="7j7-CD-Bjr" secondAttribute="leading" constant="22" id="LAD-72-8rg"/>
                                             <constraint firstItem="tTE-mB-suF" firstAttribute="leading" secondItem="7j7-CD-Bjr" secondAttribute="leading" constant="22" id="LS7-AS-hm5"/>
                                             <constraint firstItem="dNC-eH-sDI" firstAttribute="leading" secondItem="U5E-5L-5wJ" secondAttribute="trailing" constant="5" id="T3e-3B-e2B"/>
@@ -1189,6 +1200,7 @@
                                             <constraint firstItem="fFa-Pd-qrk" firstAttribute="top" secondItem="2da-m3-dty" secondAttribute="bottom" constant="8" symbolic="YES" id="b4R-mR-src"/>
                                             <constraint firstItem="U5E-5L-5wJ" firstAttribute="leading" secondItem="tTE-mB-suF" secondAttribute="trailing" constant="5" id="dbE-08-Y50"/>
                                             <constraint firstAttribute="height" constant="143" id="fUB-BS-UUz"/>
+                                            <constraint firstItem="o8Y-VJ-WOX" firstAttribute="leading" secondItem="7j7-CD-Bjr" secondAttribute="leading" constant="20" id="fjl-82-Ibo"/>
                                             <constraint firstItem="fFa-Pd-qrk" firstAttribute="width" secondItem="2da-m3-dty" secondAttribute="width" id="huv-xe-wpa"/>
                                             <constraint firstItem="p41-zu-cQ2" firstAttribute="height" secondItem="fFa-Pd-qrk" secondAttribute="height" id="ixz-jS-uVb"/>
                                             <constraint firstItem="2da-m3-dty" firstAttribute="top" secondItem="7j7-CD-Bjr" secondAttribute="top" constant="10" id="zbA-gM-lWl"/>
@@ -1243,6 +1255,7 @@
                         <outlet property="addressLine2" destination="p41-zu-cQ2" id="Fwh-dn-W5H"/>
                         <outlet property="city" destination="tTE-mB-suF" id="8jY-L0-beV"/>
                         <outlet property="email" destination="2da-m3-dty" id="UhW-B2-5K1"/>
+                        <outlet property="emailError" destination="o8Y-VJ-WOX" id="2kd-Tv-WwP"/>
                         <outlet property="state" destination="U5E-5L-5wJ" id="jqw-QG-ec5"/>
                         <outlet property="zip" destination="dNC-eH-sDI" id="daQ-bo-5xl"/>
                         <segue destination="NN1-lz-TZe" kind="show" identifier="ShowInterestedActivities" id="mEF-kS-kRN"/>
@@ -1250,7 +1263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frw-wh-Ihc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="-271"/>
+            <point key="canvasLocation" x="1511.71875" y="-271.09375"/>
         </scene>
     </scenes>
     <resources>

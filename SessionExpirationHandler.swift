@@ -15,8 +15,8 @@ class SessionExpirationHandler {
     var waitTime:Double!
     var timer:Timer!
     
-    init(viewController:UIViewController) {
-        self.waitTime = 120;
+    init(viewController:UIViewController, waitTime: Double) {
+        self.waitTime = waitTime;
         timer = Timer.scheduledTimer(timeInterval: waitTime, target: self, selector: #selector(self.areYouThereQuestion), userInfo: nil, repeats: true);
         self.viewController = viewController
     }

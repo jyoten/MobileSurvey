@@ -26,7 +26,6 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     var abandon:Bool = true
     var statePickerView: UIPickerView!
     var validator:Validator!
-    var sessionExpirationHandler:SessionExpirationHandler!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +36,7 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         setupCountryPickerView()
         setupStatePickerView()
         setupValidators()
-        sessionExpirationHandler = SessionExpirationHandler(viewController:self)
+        _ = SessionExpirationHandler(viewController:self, waitTime: 120)
     }
     
     override func didReceiveMemoryWarning() {
