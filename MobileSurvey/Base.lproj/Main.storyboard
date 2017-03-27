@@ -705,7 +705,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="a4O-4v-Lgx" kind="show" id="eLU-Ub-GAY"/>
+                                            <action selector="nextButtonClick:" destination="NN1-lz-TZe" eventType="touchUpInside" id="YlV-sU-b4n"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -737,6 +737,10 @@
                             <constraint firstItem="py2-U6-rBs" firstAttribute="top" secondItem="NjW-su-pJu" secondAttribute="bottom" id="nwT-5G-pKe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="a4O-4v-Lgx" kind="show" identifier="ShowReference" id="lZn-JH-3Dx"/>
+                        <segue destination="cIC-5V-VZm" kind="show" identifier="ShowFinish" id="M3u-Lt-y89"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUY-GZ-2yr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -825,7 +829,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3s-wT-NMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="664" y="2188"/>
+            <point key="canvasLocation" x="707" y="2084"/>
         </scene>
         <!--MoreInfoQuestionView-->
         <scene sceneID="056-uo-MSG">
@@ -1077,7 +1081,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aeG-T5-br7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="1322"/>
+            <point key="canvasLocation" x="1787" y="1292"/>
         </scene>
         <!--ContactInfoView-->
         <scene sceneID="653-tr-jru">
@@ -1277,6 +1281,6 @@
         <image name="mandir reflection no lights" width="1600" height="899"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KIx-sU-zcq"/>
+        <segue reference="M3u-Lt-y89"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -23,10 +23,10 @@ class SurveyResponse {
     var OrganizationName:String?
     var EmailAddress:String?
     var Address:AddressInfo?
-    var InterestedInKidsActivities:Bool?
-    var InterestedInFestivals:Bool?
-    var InterestedInYouthActivities:Bool?
-    var InterestedInSatsangActivities:Bool?
+    var InterestedInKidsActivities:Bool = false
+    var InterestedInFestivals:Bool = false
+    var InterestedInYouthActivities:Bool = false
+    var InterestedInSatsangActivities:Bool = false
     var AncestralState:String?
     var AncestralPlace:String?
     var ReferredBy:String?
@@ -35,6 +35,6 @@ class SurveyResponse {
     var DeviceId:String?
     var SurveyType:String?
     var EndTime:Date?
-    var WasCancelled:Bool?
-    var WasAbandonded:Bool?
+    var WasCancelled:Bool = false
+    var WasAbandonded:Bool = false
 }

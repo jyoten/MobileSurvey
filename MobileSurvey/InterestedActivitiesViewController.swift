@@ -80,6 +80,15 @@ class InterestedActivitiesViewController: UIViewController {
             button.backgroundColor = UIColor.white
         }
     }
+    
+    @IBAction func nextButtonClick(_ sender: Any) {
+        if ((AppLevelVariables.Survey?.InterestedInKidsActivities) == true || (AppLevelVariables.Survey?.InterestedInYouthActivities)  == true || (AppLevelVariables.Survey?.InterestedInSatsangActivities) == true){
+                    self.performSegue(withIdentifier: "ShowReference", sender: nil)
+        }
+        else {
+                    self.performSegue(withIdentifier: "ShowFinish", sender: nil)
+        }
+    }
     /*
     // MARK: - Navigation
 
