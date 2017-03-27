@@ -10,6 +10,9 @@ import Foundation
 
 class SurveyResponse {
     init() {
+        self.StartTime = Date()
+        self.ResponseId = UUID().uuidString
+        self.Address = AddressInfo()
     }
     
     var Rating:Int = -1
@@ -20,12 +23,18 @@ class SurveyResponse {
     var OrganizationName:String?
     var EmailAddress:String?
     var Address:AddressInfo?
-    var InterestedIn:String?
+    var InterestedInKidsActivities:Bool?
+    var InterestedInFestivals:Bool?
+    var InterestedInYouthActivities:Bool?
+    var InterestedInSatsangActivities:Bool?
     var AncestralState:String?
     var AncestralPlace:String?
     var ReferredBy:String?
-    var SubmittedTime:Date?
+    var StartTime:Date?
     var ResponseId:String?
-    
-    
+    var DeviceId:String?
+    var SurveyType:String?
+    var EndTime:Date?
+    var WasCancelled:Bool?
+    var WasAbandonded:Bool?
 }

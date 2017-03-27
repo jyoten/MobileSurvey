@@ -18,10 +18,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var button:UIButton?
     @IBOutlet weak var commentBox: UITextView!
     @IBOutlet weak var howDidYouHearBox: UITextView!
+    var rating:Int = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        AppLevelVariables.Survey = SurveyResponse()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let deviceID = UserDefaults.standard.string(forKey: "DeviceId")
+        if (deviceID == nil || deviceID == ""){
+            let alert = UIAlertController(title: "Initial Setup", message: "Please click on the gear icon to setup this device: " , preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true)
+        }
+        else {
+            AppLevelVariables.Survey?.DeviceId = deviceID
+        }
         setupRatingsImageViewGestureRecognizers()
     }
 
@@ -44,7 +58,7 @@ class ViewController: UIViewController {
         rating4.image = UIImage(named:"Off")
         rating5.image = UIImage(named:"Off")
         tappedImage.image = UIImage(named:"On")
-        AppLevelVariables.Survey?.Rating = Int(tappedImage.tag)
+        rating = Int(tappedImage.tag)
         
     }
     
@@ -73,17 +87,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func nextButtonClicked(_ sender: UIButton) {
-        AppLevelVariables.Survey?.ResponseId = UUID().uuidString;
-        AppLevelVariables.Survey?.SubmittedTime = Date()
+
+        AppLevelVariables.Survey?.Rating = rating
         AppLevelVariables.Survey?.Comment = commentBox.text
         AppLevelVariables.Survey?.HowDidYouHear = howDidYouHearBox.text
-        let alert = UIAlertController(title: "Alert", message: "ID: \(AppLevelVariables.Survey?.ResponseId)" +
-            "\n Date: \(AppLevelVariables.Survey?.SubmittedTime)" +
-            "\n Rating: \(AppLevelVariables.Survey?.Rating)" +
-            "\n Comment: \(AppLevelVariables.Survey?.Comment)" +
-            "\n HowDidYouHear: \(AppLevelVariables.Survey?.HowDidYouHear)", preferredStyle: UIAlertControllerStyle.alert)
-         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-         /*self.present(alert, animated: true)*/
         performSegue(withIdentifier: "ShowBasicInfo", sender: nil)
     }
 }

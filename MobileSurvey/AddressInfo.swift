@@ -16,4 +16,5 @@ class AddressInfo {
     var City:String?
     var State:String?
     var Zip:String?
+    var Country:String?;
 }
