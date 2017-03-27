@@ -573,8 +573,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="Country" destination="bDG-fF-NLC" id="cAq-sI-j0W"/>
                         <outlet property="State" destination="acW-4G-YaY" id="Sfm-X9-Kqg"/>
+                        <outlet property="country" destination="bDG-fF-NLC" id="s8G-dY-fVi"/>
                         <outlet property="countryError" destination="mZM-iU-NYS" id="IHe-q2-PZE"/>
                         <outlet property="firstName" destination="iCj-Dc-cZs" id="hLg-zm-8Lc"/>
                         <outlet property="firstNameError" destination="O4H-k5-mzw" id="kq6-tH-jVX"/>

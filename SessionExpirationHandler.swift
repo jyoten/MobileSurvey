@@ -16,18 +16,14 @@ class SessionExpirationHandler {
     var timer:Timer!
     
     init(viewController:UIViewController) {
-        self.waitTime = 10;
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.areYouThereQuestion), userInfo: nil, repeats: true);
+        self.waitTime = 120;
+        timer = Timer.scheduledTimer(timeInterval: waitTime, target: self, selector: #selector(self.areYouThereQuestion), userInfo: nil, repeats: true);
         self.viewController = viewController
     }
     
     @objc func areYouThereQuestion() {
         abandon = true
-        /*
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { (<#Timer#>) in
-            self.abandonSurvey()
-        }*/
-
+        
         let alert = UIAlertController(title: "Alert",
                                       message: "Are you still there? " , preferredStyle: UIAlertControllerStyle.alert)
         //if they click yes, set abandon = false so they get more time
@@ -37,7 +33,7 @@ class SessionExpirationHandler {
         }))
         
         //auto dismiss alert after 5 seconds
-        let when = DispatchTime.now() + 5
+        let when = DispatchTime.now() + 10
         DispatchQueue.main.asyncAfter(deadline: when){
             // your code with delay
             alert.dismiss(animated: true, completion: nil)

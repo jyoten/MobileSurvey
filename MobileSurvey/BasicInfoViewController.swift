@@ -129,7 +129,6 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         countries.append("USA")
         countries.append("India")
         countries.append("UK")
-        countries.append("Australia")
         countries.append("---------")
         for code in NSLocale.isoCountryCodes as [String] {
             let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
