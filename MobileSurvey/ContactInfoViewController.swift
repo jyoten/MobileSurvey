@@ -37,6 +37,10 @@ class ContactInfoViewController: UIViewController, ValidationDelegate , UITextFi
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        expirationHandler.invalidateTimer()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         setupValidators()
         email.delegate = self

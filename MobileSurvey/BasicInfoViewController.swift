@@ -41,10 +41,10 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         setupStatePickerView()
         setupValidators()
         expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120)
-        { [unowned self] abandoned in
+        { [weak self] abandoned in
             print("Session expired")
-            self.expirationHandler.invalidateTimer()
-            self.performSegue(withIdentifier: "ShowFinishFromBasicInfo", sender: nil)
+            self?.expirationHandler.invalidateTimer()
+            self?.performSegue(withIdentifier: "ShowFinishFromBasicInfo", sender: nil)
         }
     }
     

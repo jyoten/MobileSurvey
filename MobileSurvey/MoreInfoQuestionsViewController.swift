@@ -17,10 +17,10 @@ class MoreInfoQuestionsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
             expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 4)
-        { [unowned self] abandoned in
+        { [weak self] abandoned in
             print("Session expired")
-            self.expirationHandler.invalidateTimer()
-            self.performSegue(withIdentifier: "FinishFromQ1", sender: nil)
+            self?.expirationHandler.invalidateTimer()
+            self?.performSegue(withIdentifier: "FinishFromQ1", sender: nil)
         }
     }
     
