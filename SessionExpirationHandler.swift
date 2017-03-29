@@ -19,7 +19,7 @@ class SessionExpirationHandler {
     init(viewController:UIViewController, waitTime: Double, sessionAbandonedCallback: @escaping (_ abandoned: Bool)->()){
         self.waitTime = waitTime;
         self.sessionAbandoned = sessionAbandonedCallback
-        timer = Timer.scheduledTimer(timeInterval: waitTime, target: self, selector: #selector(self.areYouThereQuestion), userInfo: nil, repeats: true);
+        timer = Timer.scheduledTimer(timeInterval: self.waitTime, target: self, selector: #selector(self.areYouThereQuestion), userInfo: nil, repeats: true);
         self.viewController = viewController
         
     }
@@ -40,13 +40,14 @@ class SessionExpirationHandler {
             self.abandon = false
         }))
         
-        let when = DispatchTime.now() + 1
+        let when = DispatchTime.now() + 5
         DispatchQueue.main.asyncAfter(deadline: when){
             // your code with delay
             self.abandon = true
             alert.dismiss(animated: false, completion: nil)
         }
-        let when2 = DispatchTime.now() + 2
+        
+        let when2 = DispatchTime.now() + 5.5
         DispatchQueue.main.asyncAfter(deadline: when2){
             self.abandonSurvey()
         }

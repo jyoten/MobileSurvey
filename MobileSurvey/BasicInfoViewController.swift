@@ -33,14 +33,19 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        expirationHandler.invalidateTimer()
+    }
     override func viewDidAppear(_ animated: Bool) {
         setupCountryPickerView()
         setupStatePickerView()
         setupValidators()
-        //expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120) { [weak self] abandoned in
-        //    print("Session expired")
-        //    self?.performSegue(withIdentifier: "ShowFinishFromBasicInfo", sender: nil)
-        //}
+        expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120)
+        { [unowned self] abandoned in
+            print("Session expired")
+            self.expirationHandler.invalidateTimer()
+            self.performSegue(withIdentifier: "ShowFinishFromBasicInfo", sender: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,15 +61,6 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         validator.validate(delegate: self as ValidationDelegate)
     }
 
-    @IBAction func redBackClicked(_ sender: Any) {
-        /*let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeView") as UIViewController
-        // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
-        
-        self.present(viewController, animated: false, completion: nil)
- */
-        self.performSegue(withIdentifier: "UnwindFromBasicInfo", sender: nil)
-
-    }
     func validationSuccessful() {
         AppLevelVariables.Survey!.FirstName = firstName.text!
         AppLevelVariables.Survey!.LastName = lastName.text!
@@ -72,7 +68,6 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         AppLevelVariables.Survey!.Address.Country = country.text!
         AppLevelVariables.Survey!.Address.State = state.text!
         AppLevelVariables.Survey!.OrganizationName = organizationName.text!
-        //expirationHandler.invalidateTimer()
         performSegue(withIdentifier: "ShowQuestion1", sender: nil)
     }
     
