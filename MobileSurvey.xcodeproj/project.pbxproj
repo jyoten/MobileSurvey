@@ -18,6 +18,7 @@
 		E19A79A81E8366260088F276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19A79A61E8366260088F276 /* LaunchScreen.storyboard */; };
 		E19A79B11E836A9D0088F276 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A79B01E836A9D0088F276 /* SurveyResponse.swift */; };
 		E19A79B31E839E470088F276 /* BasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A79B21E839E470088F276 /* BasicInfoViewController.swift */; };
+		E19F4BC61E8C50B80052CCC4 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E19F4BC51E8C50B80052CCC4 /* GoogleSignIn.bundle */; };
 		E1CC19F51E86E82200D2C6B4 /* AddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */; };
 		E1CC19F71E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F61E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift */; };
 		E1CC19F91E877C6800D2C6B4 /* FinishSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F81E877C6800D2C6B4 /* FinishSurveyViewController.swift */; };
@@ -43,6 +44,7 @@
 		E19A79A91E8366260088F276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19A79B01E836A9D0088F276 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
 		E19A79B21E839E470088F276 /* BasicInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicInfoViewController.swift; sourceTree = "<group>"; };
+		E19F4BC51E8C50B80052CCC4 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = MobileSurvey/GoogleSignIn.bundle; sourceTree = "<group>"; };
 		E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressInfo.swift; sourceTree = "<group>"; };
 		E1CC19F61E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoQuestionsViewController.swift; sourceTree = "<group>"; };
 		E1CC19F81E877C6800D2C6B4 /* FinishSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishSurveyViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		E19A79911E8366260088F276 = {
 			isa = PBXGroup;
 			children = (
+				E19F4BC51E8C50B80052CCC4 /* GoogleSignIn.bundle */,
 				E12A32AE1E8A14F800BC4EE8 /* MobileSurvey-Bridging-Header.h */,
 				E12A328D1E88D24C00BC4EE8 /* Utilities */,
 				E19A799C1E8366260088F276 /* MobileSurvey */,
@@ -212,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19F4BC61E8C50B80052CCC4 /* GoogleSignIn.bundle in Resources */,
 				E19A79A81E8366260088F276 /* LaunchScreen.storyboard in Resources */,
 				E19A79A51E8366260088F276 /* Assets.xcassets in Resources */,
 				E19A79A31E8366260088F276 /* Main.storyboard in Resources */,
