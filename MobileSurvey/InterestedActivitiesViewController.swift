@@ -9,20 +9,21 @@
 import UIKit
 
 class InterestedActivitiesViewController: UIViewController {
-
+    
     var expirationHandler:SessionExpirationHandler!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
-        expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 20) /*{ [weak self] abandoned in
+        expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 20)
+        { [weak self] abandoned in
             print("Session expired")
             self?.performSegue(withIdentifier: "ShowFinishFromInterestedActivities", sender: nil)
-        }*/
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,7 +75,7 @@ class InterestedActivitiesViewController: UIViewController {
         }
         toggleButton(button: sender)
     }
-
+    
     func toggleButton (button:UIButton){
         if(button.backgroundColor == UIColor.white)
         {
@@ -89,11 +90,11 @@ class InterestedActivitiesViewController: UIViewController {
     @IBAction func nextButtonClick(_ sender: Any) {
         expirationHandler.invalidateTimer()
         if ((AppLevelVariables.Survey!.InterestedInKidsActivities) == true || (AppLevelVariables.Survey!.InterestedInYouthActivities)  == true || (AppLevelVariables.Survey!.InterestedInSatsangActivities) == true){
-                    self.performSegue(withIdentifier: "ShowReference", sender: nil)
+            self.performSegue(withIdentifier: "ShowReference", sender: nil)
         }
         else {
-                    self.performSegue(withIdentifier: "ShowFinishFromInterestedActivities", sender: nil)
+            self.performSegue(withIdentifier: "ShowFinishFromInterestedActivities", sender: nil)
         }
     }
-
+    
 }

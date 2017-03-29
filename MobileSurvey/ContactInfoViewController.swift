@@ -10,7 +10,7 @@ import UIKit
 import SwiftValidator
 
 class ContactInfoViewController: UIViewController, ValidationDelegate , UITextFieldDelegate{
-
+    
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var addressLine1: UITextField!
     @IBOutlet weak var addressLine2: UITextField!
@@ -30,12 +30,13 @@ class ContactInfoViewController: UIViewController, ValidationDelegate , UITextFi
     }
     override func viewWillAppear(_ animated: Bool) {
         state.text = AppLevelVariables.Survey!.Address.State
-        expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120) /*{ [weak self] abandoned in
+        expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120)
+        { [weak self] abandoned in
             print("Session expired")
             self?.performSegue(withIdentifier: "ShowFinishFromContactInfo", sender: nil)
-        }*/
+        }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         setupValidators()
         email.delegate = self
@@ -46,7 +47,7 @@ class ContactInfoViewController: UIViewController, ValidationDelegate , UITextFi
         let userInfo:NSDictionary = notification.userInfo! as NSDictionary
         let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue
-            keyboardHeight = keyboardRectangle.origin.y
+        keyboardHeight = keyboardRectangle.origin.y
         
         
         let x = CGFloat(0)
@@ -120,15 +121,15 @@ class ContactInfoViewController: UIViewController, ValidationDelegate , UITextFi
         validator = Validator()
         validator.registerField(textField: email, errorLabel: emailError, rules: [RequiredRule()])
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

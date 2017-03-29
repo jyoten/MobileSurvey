@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 class SessionExpirationHandler {
-
+    
     var abandon:Bool!
     var viewController:UIViewController!
     var waitTime:Double!
     var timer:Timer!
     var sessionAbandoned: ((_ abandoned:Bool) -> ())?
     
-    init(viewController:UIViewController, waitTime: Double){
+    init(viewController:UIViewController, waitTime: Double, sessionAbandonedCallback: @escaping (_ abandoned: Bool)->()){
         self.waitTime = waitTime;
-        //self.sessionAbandoned = sessionAbandonedCallback
+        self.sessionAbandoned = sessionAbandonedCallback
         timer = Timer.scheduledTimer(timeInterval: waitTime, target: self, selector: #selector(self.areYouThereQuestion), userInfo: nil, repeats: true);
         self.viewController = viewController
         
@@ -40,15 +40,17 @@ class SessionExpirationHandler {
             self.abandon = false
         }))
         
-        //auto dismiss alert after 5 seconds
-        let when = DispatchTime.now() + 2
+        let when = DispatchTime.now() + 1
         DispatchQueue.main.asyncAfter(deadline: when){
             // your code with delay
-            alert.dismiss(animated: true, completion: nil)
+            self.abandon = true
+            alert.dismiss(animated: false, completion: nil)
+        }
+        let when2 = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when2){
             self.abandonSurvey()
         }
-        
-        viewController.present(alert, animated: true)
+        self.viewController.present(alert, animated: true)
         
     }
     
@@ -56,9 +58,9 @@ class SessionExpirationHandler {
         if (abandon == true)
         {
             self.timer.invalidate()
-            //self.sessionAbandoned?(abandon)
+            self.viewController = nil
             AppLevelVariables.Survey?.WasAbandonded = true;
-            viewController.performSegue(withIdentifier: "FinishFromQ1", sender: nil)
+            self.sessionAbandoned?(abandon)
         }
     }
 }
