@@ -14,11 +14,19 @@ class SessionExpirationHandler {
     var viewController:UIViewController!
     var waitTime:Double!
     var timer:Timer!
+    var sessionAbandoned: ((_ abandoned:Bool) -> ())?
     
-    init(viewController:UIViewController, waitTime: Double) {
+    init(viewController:UIViewController, waitTime: Double){
         self.waitTime = waitTime;
+        //self.sessionAbandoned = sessionAbandonedCallback
         timer = Timer.scheduledTimer(timeInterval: waitTime, target: self, selector: #selector(self.areYouThereQuestion), userInfo: nil, repeats: true);
         self.viewController = viewController
+        
+    }
+    
+    func invalidateTimer(){
+        self.timer.invalidate()
+        self.viewController = nil
     }
     
     @objc func areYouThereQuestion() {
@@ -33,7 +41,7 @@ class SessionExpirationHandler {
         }))
         
         //auto dismiss alert after 5 seconds
-        let when = DispatchTime.now() + 10
+        let when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when){
             // your code with delay
             alert.dismiss(animated: true, completion: nil)
@@ -48,10 +56,9 @@ class SessionExpirationHandler {
         if (abandon == true)
         {
             self.timer.invalidate()
+            //self.sessionAbandoned?(abandon)
             AppLevelVariables.Survey?.WasAbandonded = true;
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let homeView = storyboard.instantiateViewController(withIdentifier: "FinishView")
-            viewController.present(homeView,animated: true, completion:nil)
+            viewController.performSegue(withIdentifier: "FinishFromQ1", sender: nil)
         }
     }
 }

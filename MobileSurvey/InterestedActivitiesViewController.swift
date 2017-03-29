@@ -10,6 +10,8 @@ import UIKit
 
 class InterestedActivitiesViewController: UIViewController {
 
+    var expirationHandler:SessionExpirationHandler!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,7 +19,10 @@ class InterestedActivitiesViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
+        expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 20) /*{ [weak self] abandoned in
+            print("Session expired")
+            self?.performSegue(withIdentifier: "ShowFinishFromInterestedActivities", sender: nil)
+        }*/
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -25,32 +30,32 @@ class InterestedActivitiesViewController: UIViewController {
     }
     
     @IBAction func kidsButtonClick(_ sender: UIButton) {
-        if (AppLevelVariables.Survey?.InterestedInKidsActivities == true)
+        if (AppLevelVariables.Survey!.InterestedInKidsActivities == true)
         {
-            AppLevelVariables.Survey?.InterestedInKidsActivities = false
+            AppLevelVariables.Survey!.InterestedInKidsActivities = false
         }
         else
         {
-            AppLevelVariables.Survey?.InterestedInKidsActivities = true
+            AppLevelVariables.Survey!.InterestedInKidsActivities = true
         }
         toggleButton(button: sender)
     }
     @IBAction func youthButtonClick(_ sender: UIButton) {
-        if (AppLevelVariables.Survey?.InterestedInYouthActivities == true)
+        if (AppLevelVariables.Survey!.InterestedInYouthActivities == true)
         {
-            AppLevelVariables.Survey?.InterestedInYouthActivities = false
+            AppLevelVariables.Survey!.InterestedInYouthActivities = false
         }
         else
         {
-            AppLevelVariables.Survey?.InterestedInYouthActivities = true
+            AppLevelVariables.Survey!.InterestedInYouthActivities = true
         }
         toggleButton(button: sender)
     }
     
     @IBAction func festivalsButtonClick(_ sender: UIButton) {
-        if (AppLevelVariables.Survey?.InterestedInFestivals == true)
+        if (AppLevelVariables.Survey!.InterestedInFestivals == true)
         {
-            AppLevelVariables.Survey?.InterestedInFestivals = false
+            AppLevelVariables.Survey!.InterestedInFestivals = false
         }
         else
         {
@@ -59,13 +64,13 @@ class InterestedActivitiesViewController: UIViewController {
         toggleButton(button: sender)
     }
     @IBAction func satsangButtonClick(_ sender: UIButton) {
-        if (AppLevelVariables.Survey?.InterestedInSatsangActivities == true)
+        if (AppLevelVariables.Survey!.InterestedInSatsangActivities == true)
         {
-            AppLevelVariables.Survey?.InterestedInSatsangActivities = false
+            AppLevelVariables.Survey!.InterestedInSatsangActivities = false
         }
         else
         {
-            AppLevelVariables.Survey?.InterestedInSatsangActivities = true
+            AppLevelVariables.Survey!.InterestedInSatsangActivities = true
         }
         toggleButton(button: sender)
     }
@@ -82,11 +87,12 @@ class InterestedActivitiesViewController: UIViewController {
     }
     
     @IBAction func nextButtonClick(_ sender: Any) {
-        if ((AppLevelVariables.Survey?.InterestedInKidsActivities) == true || (AppLevelVariables.Survey?.InterestedInYouthActivities)  == true || (AppLevelVariables.Survey?.InterestedInSatsangActivities) == true){
+        expirationHandler.invalidateTimer()
+        if ((AppLevelVariables.Survey!.InterestedInKidsActivities) == true || (AppLevelVariables.Survey!.InterestedInYouthActivities)  == true || (AppLevelVariables.Survey!.InterestedInSatsangActivities) == true){
                     self.performSegue(withIdentifier: "ShowReference", sender: nil)
         }
         else {
-                    self.performSegue(withIdentifier: "ShowFinish", sender: nil)
+                    self.performSegue(withIdentifier: "ShowFinishFromInterestedActivities", sender: nil)
         }
     }
 

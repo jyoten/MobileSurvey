@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyDropbox
 
 class FinishSurveyViewController: UIViewController {
 
@@ -19,33 +20,33 @@ class FinishSurveyViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        AppLevelVariables.Survey?.EndTime = Date()
-        let output = "ID: \(AppLevelVariables.Survey?.ResponseId)" +
-            "\n Date: \(AppLevelVariables.Survey?.StartTime)" +
-            "\n Rating: \(AppLevelVariables.Survey?.Rating)" +
-            "\n Comment: \(AppLevelVariables.Survey?.Comment)" +
-            "\n HowDidYouHear: \(AppLevelVariables.Survey?.HowDidYouHear)" +
-            "\n FirstName: \(AppLevelVariables.Survey?.FirstName)" +
-            "\n LastName: \(AppLevelVariables.Survey?.LastName)" +
-            "\n Address: \(AppLevelVariables.Survey?.Address?.AddressLine1) \(AppLevelVariables.Survey?.Address?.AddressLine2)" +
-            "\n City: \(AppLevelVariables.Survey?.Address?.City)" +
-            "\n State: \(AppLevelVariables.Survey?.Address?.State)" +
-            "\n Zip: \(AppLevelVariables.Survey?.Address?.Zip)" +
-            "\n Country: \(AppLevelVariables.Survey?.Address?.Country)" +
-            "\n Organization: \(AppLevelVariables.Survey?.OrganizationName)" +
-            "\n Email: \(AppLevelVariables.Survey?.EmailAddress)" +
-            "\n KidsInterest: \(AppLevelVariables.Survey?.InterestedInKidsActivities)" +
-            "\n FestivalInterest: \(AppLevelVariables.Survey?.InterestedInFestivals)" +
-            "\n SatsangInterest: \(AppLevelVariables.Survey?.InterestedInSatsangActivities)" +
-            "\n YouthInterest: \(AppLevelVariables.Survey?.InterestedInYouthActivities)" +
-            "\n AncestralState: \(AppLevelVariables.Survey?.AncestralState)" +
-            "\n AncestralPlace: \(AppLevelVariables.Survey?.AncestralPlace)" +
-            "\n ReferredBy: \(AppLevelVariables.Survey?.ReferredBy)" +
-            "\n SurveyType: \(AppLevelVariables.Survey?.SurveyType)" +
-            "\n StartTime: \(AppLevelVariables.Survey?.StartTime)" +
-            "\n EndTime: \(AppLevelVariables.Survey?.EndTime)" +
-            "\n WasAbandoned: \(AppLevelVariables.Survey?.WasAbandonded)" +
-        "\n WasCancelled: \(AppLevelVariables.Survey?.WasCancelled)"
+        AppLevelVariables.Survey!.EndTime = Date()
+        let output = "ID: \(AppLevelVariables.Survey!.ResponseId)" +
+            "\n Date: \(AppLevelVariables.Survey!.StartTime)" +
+            "\n Rating: \(AppLevelVariables.Survey!.Rating)" +
+            "\n Comment: \(AppLevelVariables.Survey!.Comment)" +
+            "\n HowDidYouHear: \(AppLevelVariables.Survey!.HowDidYouHear)" +
+            "\n FirstName: \(AppLevelVariables.Survey!.FirstName)" +
+            "\n LastName: \(AppLevelVariables.Survey!.LastName)" +
+            "\n Address: \(AppLevelVariables.Survey!.Address.AddressLine1) \(AppLevelVariables.Survey!.Address.AddressLine2)" +
+            "\n City: \(AppLevelVariables.Survey!.Address.City)" +
+            "\n State: \(AppLevelVariables.Survey!.Address.State)" +
+            "\n Zip: \(AppLevelVariables.Survey!.Address.Zip)" +
+            "\n Country: \(AppLevelVariables.Survey!.Address.Country)" +
+            "\n Organization: \(AppLevelVariables.Survey!.OrganizationName)" +
+            "\n Email: \(AppLevelVariables.Survey!.EmailAddress)" +
+            "\n KidsInterest: \(AppLevelVariables.Survey!.InterestedInKidsActivities)" +
+            "\n FestivalInterest: \(AppLevelVariables.Survey!.InterestedInFestivals)" +
+            "\n SatsangInterest: \(AppLevelVariables.Survey!.InterestedInSatsangActivities)" +
+            "\n YouthInterest: \(AppLevelVariables.Survey!.InterestedInYouthActivities)" +
+            "\n AncestralState: \(AppLevelVariables.Survey!.AncestralState)" +
+            "\n AncestralPlace: \(AppLevelVariables.Survey!.AncestralPlace)" +
+            "\n ReferredBy: \(AppLevelVariables.Survey!.ReferredBy)" +
+            "\n SurveyType: \(AppLevelVariables.Survey!.SurveyType)" +
+            "\n StartTime: \(AppLevelVariables.Survey!.StartTime)" +
+            "\n EndTime: \(AppLevelVariables.Survey!.EndTime)" +
+            "\n WasAbandoned: \(AppLevelVariables.Survey!.WasAbandonded)" +
+        "\n WasCancelled: \(AppLevelVariables.Survey!.WasCancelled)"
         print("Survey results are: \(output)")
         writeSurveyToCSV();
         Timer.scheduledTimer(timeInterval: 5, target:self, selector: #selector(FinishSurveyViewController.restartSurvey), userInfo: nil, repeats: false)
@@ -53,9 +54,7 @@ class FinishSurveyViewController: UIViewController {
     }
     
     func restartSurvey() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let homeView = storyboard.instantiateViewController(withIdentifier: "HomeView")
-        self.present(homeView,animated: true, completion:nil)
+        performSegue(withIdentifier: "UnwindFromFinishToStart", sender: nil)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -63,7 +62,7 @@ class FinishSurveyViewController: UIViewController {
     }
     
     @IBAction func restartButtonClick(_ sender: Any) {
-        performSegue(withIdentifier: "ShowHome", sender: nil)
+        performSegue(withIdentifier: "UnwindFromFinishToStart", sender: nil)
     }
 
     
@@ -87,12 +86,17 @@ class FinishSurveyViewController: UIViewController {
         {
             //Create new file
             do {
+                AppLevelVariables.todaysFileName = filename
                 let content = "\(headerText)\n\(createContent())"
                 try content.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+                
             }   catch {
                 print("Error creating \(path)")
             }
         }
+        
+
+        
     }
 
     func checkIfFileExists(filePath:String)->Bool {
@@ -110,40 +114,40 @@ class FinishSurveyViewController: UIViewController {
     func createFileNameForToday(prefix:String)-> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return prefix + formatter.string(from:Date())
+        return prefix + "_" + AppLevelVariables.Survey!.DeviceId + "_" + formatter.string(from:Date()) + ".csv"
         
     }
         
         func createContent() -> String {
             let content =
-                    "\(AppLevelVariables.Survey?.DeviceId)|" +
-                    "\(AppLevelVariables.Survey?.ResponseId)|" +
-                    "\(AppLevelVariables.Survey?.StartTime)|" +
-                    "\(AppLevelVariables.Survey?.Rating)|" +
-                    "\(AppLevelVariables.Survey?.Comment)|" +
-                    "\(AppLevelVariables.Survey?.HowDidYouHear)|" +
-                    "\(AppLevelVariables.Survey?.FirstName)|" +
-                    "\(AppLevelVariables.Survey?.LastName)|" +
-                    "\(AppLevelVariables.Survey?.Address?.AddressLine1)|" +
-                    "\(AppLevelVariables.Survey?.Address?.AddressLine2)|" +
-                    "\(AppLevelVariables.Survey?.Address?.City)|" +
-                    "\(AppLevelVariables.Survey?.Address?.State)|" +
-                    "\(AppLevelVariables.Survey?.Address?.Zip)|" +
-                    "\(AppLevelVariables.Survey?.Address?.Country)|" +
-                    "\(AppLevelVariables.Survey?.OrganizationName)|" +
-                    "\(AppLevelVariables.Survey?.EmailAddress)|" +
-                    "\(AppLevelVariables.Survey?.InterestedInKidsActivities)|" +
-                    "\(AppLevelVariables.Survey?.InterestedInFestivals)|" +
-                    "\(AppLevelVariables.Survey?.InterestedInSatsangActivities)|" +
-                    "\(AppLevelVariables.Survey?.InterestedInYouthActivities)|" +
-                    "\(AppLevelVariables.Survey?.AncestralState)|" +
-                    "\(AppLevelVariables.Survey?.AncestralPlace)|" +
-                    "\(AppLevelVariables.Survey?.ReferredBy)|" +
-                    "\(AppLevelVariables.Survey?.SurveyType)|" +
-                    "\(AppLevelVariables.Survey?.StartTime)|" +
-                    "\(AppLevelVariables.Survey?.EndTime)|" +
-                    "\(AppLevelVariables.Survey?.WasAbandonded)|" +
-                    "\(AppLevelVariables.Survey?.WasCancelled)"
+                    "\(AppLevelVariables.Survey!.DeviceId)|" +
+                    "\(AppLevelVariables.Survey!.ResponseId)|" +
+                    "\(AppLevelVariables.Survey!.StartTime)|" +
+                    "\(AppLevelVariables.Survey!.Rating)|" +
+                    "\(AppLevelVariables.Survey!.Comment)|" +
+                    "\(AppLevelVariables.Survey!.HowDidYouHear)|" +
+                    "\(AppLevelVariables.Survey!.FirstName)|" +
+                    "\(AppLevelVariables.Survey!.LastName)|" +
+                    "\(AppLevelVariables.Survey!.Address.AddressLine1)|" +
+                    "\(AppLevelVariables.Survey!.Address.AddressLine2)|" +
+                    "\(AppLevelVariables.Survey!.Address.City)|" +
+                    "\(AppLevelVariables.Survey!.Address.State)|" +
+                    "\(AppLevelVariables.Survey!.Address.Zip)|" +
+                    "\(AppLevelVariables.Survey!.Address.Country)|" +
+                    "\(AppLevelVariables.Survey!.OrganizationName)|" +
+                    "\(AppLevelVariables.Survey!.EmailAddress)|" +
+                    "\(AppLevelVariables.Survey!.InterestedInKidsActivities)|" +
+                    "\(AppLevelVariables.Survey!.InterestedInFestivals)|" +
+                    "\(AppLevelVariables.Survey!.InterestedInSatsangActivities)|" +
+                    "\(AppLevelVariables.Survey!.InterestedInYouthActivities)|" +
+                    "\(AppLevelVariables.Survey!.AncestralState)|" +
+                    "\(AppLevelVariables.Survey!.AncestralPlace)|" +
+                    "\(AppLevelVariables.Survey!.ReferredBy)|" +
+                    "\(AppLevelVariables.Survey!.SurveyType)|" +
+                    "\(AppLevelVariables.Survey!.StartTime)|" +
+                    "\(AppLevelVariables.Survey!.EndTime)|" +
+                    "\(AppLevelVariables.Survey!.WasAbandonded)|" +
+                    "\(AppLevelVariables.Survey!.WasCancelled)"
             
             return content
     }

@@ -26,6 +26,7 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     var abandon:Bool = true
     var statePickerView: UIPickerView!
     var validator:Validator!
+    var expirationHandler:SessionExpirationHandler!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,10 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         setupCountryPickerView()
         setupStatePickerView()
         setupValidators()
-        _ = SessionExpirationHandler(viewController:self, waitTime: 120)
+        //expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120) { [weak self] abandoned in
+        //    print("Session expired")
+        //    self?.performSegue(withIdentifier: "ShowFinishFromBasicInfo", sender: nil)
+        //}
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,13 +56,23 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         validator.validate(delegate: self as ValidationDelegate)
     }
 
+    @IBAction func redBackClicked(_ sender: Any) {
+        /*let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeView") as UIViewController
+        // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
+        
+        self.present(viewController, animated: false, completion: nil)
+ */
+        self.performSegue(withIdentifier: "UnwindFromBasicInfo", sender: nil)
+
+    }
     func validationSuccessful() {
-        AppLevelVariables.Survey?.FirstName = firstName.text
-        AppLevelVariables.Survey?.LastName = lastName.text
-        AppLevelVariables.Survey?.Address = AddressInfo()
-        AppLevelVariables.Survey?.Address?.Country = country.text
-        AppLevelVariables.Survey?.Address?.State = state.text
-        AppLevelVariables.Survey?.OrganizationName = organizationName.text
+        AppLevelVariables.Survey!.FirstName = firstName.text!
+        AppLevelVariables.Survey!.LastName = lastName.text!
+        AppLevelVariables.Survey!.Address = AddressInfo()
+        AppLevelVariables.Survey!.Address.Country = country.text!
+        AppLevelVariables.Survey!.Address.State = state.text!
+        AppLevelVariables.Survey!.OrganizationName = organizationName.text!
+        //expirationHandler.invalidateTimer()
         performSegue(withIdentifier: "ShowQuestion1", sender: nil)
     }
     
@@ -153,10 +167,9 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     
     func setupValidators(){
         validator = Validator()
-        validator.registerField(textField: firstName, errorLabel: firstNameError, rules: [RequiredRule()])
-        validator.registerField(textField: lastName, errorLabel: lastNameError, rules: [RequiredRule()])
-        validator.registerField(textField: country, errorLabel: countryError
-            , rules: [RequiredRule()])
+        //validator.registerField(textField: firstName, errorLabel: firstNameError, rules: [RequiredRule()])
+        //validator.registerField(textField: lastName, errorLabel: lastNameError, rules: [RequiredRule()])
+        //validator.registerField(textField: country, errorLabel: countryError, rules: [RequiredRule()])
     }
     
     

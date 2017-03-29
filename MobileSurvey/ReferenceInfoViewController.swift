@@ -12,11 +12,19 @@ class ReferenceInfoViewController: UIViewController {
     @IBOutlet weak var ancestralState: UITextField!
     @IBOutlet weak var ancestralPlace: UITextField!
     @IBOutlet weak var referredBy: UITextField!
-
+    var expirationHandler:SessionExpirationHandler!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120) /*{ [weak self] abandoned in
+            print("Session expired")
+            self?.performSegue(withIdentifier: "ShowFinishFromReferenceInfo", sender: nil)
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,10 +33,11 @@ class ReferenceInfoViewController: UIViewController {
     }
     
     @IBAction func nextButtonClick(_ sender: Any) {
-        AppLevelVariables.Survey?.AncestralState = ancestralState.text
-        AppLevelVariables.Survey?.AncestralPlace = ancestralPlace.text
-        AppLevelVariables.Survey?.ReferredBy = referredBy.text
-        performSegue(withIdentifier: "ShowFinish", sender: nil)
+        AppLevelVariables.Survey!.AncestralState = ancestralState.text!
+        AppLevelVariables.Survey!.AncestralPlace = ancestralPlace.text!
+        AppLevelVariables.Survey!.ReferredBy = referredBy.text!
+        expirationHandler.invalidateTimer()
+        performSegue(withIdentifier: "ShowFinishFromReferenceInfo", sender: nil)
     }
 
     /*

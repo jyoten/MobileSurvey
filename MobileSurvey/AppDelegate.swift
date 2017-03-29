@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import SwiftyDropbox
     struct AppLevelVariables {
         static var Survey: SurveyResponse?
+        static var todaysFileName: String!
+        static var lastSentDate:Date!
     }
 
 @UIApplicationMain
@@ -19,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         AppLevelVariables.Survey = SurveyResponse()
+        DropboxClientsManager.setupWithAppKey("incbe4vieiubspn")
         return true
     }
 
@@ -43,7 +47,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let authResult = DropboxClientsManager.handleRedirectURL(url) {
+            switch authResult {
+            case .success(let token):
+                print("Success! User is logged into Dropbox with token:  \(token)")
+            case .cancel:
+                print("Authorization flow was manually canceled by user!")
+            case .error(_, let description):
+                print("Error: \(description)")
+            }
+        }
+        return true
+    }
 
 }
 

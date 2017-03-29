@@ -10,11 +10,17 @@ import Foundation
 
 class AddressInfo {
     init() {
+        AddressLine1 = ""
+        AddressLine2 = ""
+        City = ""
+        State = ""
+        Zip = ""
+        Country = ""
     }
-    var AddressLine1:String?
-    var AddressLine2:String?
-    var City:String?
-    var State:String?
-    var Zip:String?
-    var Country:String?;
+    var AddressLine1:String
+    var AddressLine2:String
+    var City:String
+    var State:String
+    var Zip:String
+    var Country:String
 }

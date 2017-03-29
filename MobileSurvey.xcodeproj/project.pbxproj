@@ -10,6 +10,7 @@
 		38CAC3272978C6C861B34B15 /* Pods_MobileSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EFE44018F75BC1DF758A929 /* Pods_MobileSurvey.framework */; };
 		E12A328C1E883E9F00BC4EE8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A328B1E883E9F00BC4EE8 /* SettingsViewController.swift */; };
 		E12A328F1E88D27100BC4EE8 /* SessionExpirationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A328E1E88D27100BC4EE8 /* SessionExpirationHandler.swift */; };
+		E12A32B51E8A19B900BC4EE8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12A32B41E8A19B900BC4EE8 /* SystemConfiguration.framework */; };
 		E19A799E1E8366260088F276 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A799D1E8366260088F276 /* AppDelegate.swift */; };
 		E19A79A01E8366260088F276 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A799F1E8366260088F276 /* ViewController.swift */; };
 		E19A79A31E8366260088F276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19A79A11E8366260088F276 /* Main.storyboard */; };
@@ -31,6 +32,8 @@
 		4EFE44018F75BC1DF758A929 /* Pods_MobileSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12A328B1E883E9F00BC4EE8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E12A328E1E88D27100BC4EE8 /* SessionExpirationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionExpirationHandler.swift; sourceTree = "<group>"; };
+		E12A32AE1E8A14F800BC4EE8 /* MobileSurvey-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileSurvey-Bridging-Header.h"; sourceTree = "<group>"; };
+		E12A32B41E8A19B900BC4EE8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E19A799A1E8366260088F276 /* MobileSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19A799D1E8366260088F276 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E19A799F1E8366260088F276 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E12A32B51E8A19B900BC4EE8 /* SystemConfiguration.framework in Frameworks */,
 				38CAC3272978C6C861B34B15 /* Pods_MobileSurvey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +67,7 @@
 		749C366FBC8E78DAFB1B0C56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E12A32B41E8A19B900BC4EE8 /* SystemConfiguration.framework */,
 				4EFE44018F75BC1DF758A929 /* Pods_MobileSurvey.framework */,
 			);
 			name = Frameworks;
@@ -88,6 +93,7 @@
 		E19A79911E8366260088F276 = {
 			isa = PBXGroup;
 			children = (
+				E12A32AE1E8A14F800BC4EE8 /* MobileSurvey-Bridging-Header.h */,
 				E12A328D1E88D24C00BC4EE8 /* Utilities */,
 				E19A799C1E8366260088F276 /* MobileSurvey */,
 				E19A799B1E8366260088F276 /* Products */,
@@ -178,6 +184,7 @@
 					E19A79991E8366260088F276 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = Q7PU779VFB;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -401,12 +408,23 @@
 			baseConfigurationReference = 11CD2ED7FCFE36803949E93C /* Pods-MobileSurvey.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = Q7PU779VFB;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileSurvey/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcompute.MobileSurvey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -416,12 +434,22 @@
 			baseConfigurationReference = 07B4B10086417718DC4D9FEE /* Pods-MobileSurvey.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = Q7PU779VFB;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MobileSurvey/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcompute.MobileSurvey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

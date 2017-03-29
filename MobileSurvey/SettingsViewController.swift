@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SwiftyDropbox
 
 class SettingsViewController: UIViewController {
     @IBOutlet weak var deviceId: UITextField!
-
+    @IBOutlet weak var successMessage: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,26 +19,47 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        deviceId.text = AppLevelVariables.Survey?.DeviceId
+        deviceId.text = AppLevelVariables.Survey!.DeviceId
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func dropboxLoginClick(_ sender: Any) {
+        
+        DropboxClientsManager.authorizeFromController(UIApplication.shared, controller: self, openURL: { (url: URL) ->Void in UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        
+        })
+    }
+
+    
+    @IBAction func uploadButtonClick(_ sender: Any) {
+        if let client = DropboxClientsManager.authorizedClient {
+            
+            // Get the current user's account info
+            client.users.getCurrentAccount().response { response, error in
+                if let account = response {
+                    print("Hello \(account.name.givenName)")
+                    self.successMessage.text = "Hello \(account.name.givenName)"
+                } else {
+                    self.successMessage.text = "Unable to connect"
+                    print(error!)
+                }
+            }
+        }
+    }
+    
     @IBAction func cancelClick(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let homeView = storyboard.instantiateViewController(withIdentifier: "HomeView")
-        self.present(homeView,animated: true, completion:nil)
+        performSegue(withIdentifier: "UnwindFromSettings", sender: nil)
     }
 
     @IBAction func saveClick(_ sender: Any) {
-        AppLevelVariables.Survey?.DeviceId = deviceId.text;
+        AppLevelVariables.Survey!.DeviceId = deviceId.text!;
         UserDefaults.standard.set(deviceId.text, forKey: "DeviceId")
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let homeView = storyboard.instantiateViewController(withIdentifier: "HomeView")
-        self.present(homeView,animated: true, completion:nil)
+        performSegue(withIdentifier: "UnwindFromSettings", sender: nil)
     }
     /*
     // MARK: - Navigation
@@ -48,5 +70,4 @@ class SettingsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
