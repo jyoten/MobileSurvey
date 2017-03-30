@@ -10,6 +10,7 @@ import UIKit
 import SwiftyDropbox
 
 class SettingsViewController: UIViewController {
+    @IBOutlet weak var dropBoxLoginButton: UIButton!
     @IBOutlet weak var deviceId: UITextField!
     @IBOutlet weak var successMessage: UILabel!
     override func viewDidLoad() {
@@ -20,6 +21,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         deviceId.text = AppLevelVariables.Survey!.DeviceId
+        checkUser()
     }
 
     
@@ -29,23 +31,35 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func dropboxLoginClick(_ sender: Any) {
-        
-        DropboxClientsManager.authorizeFromController(UIApplication.shared, controller: self, openURL: { (url: URL) ->Void in UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        
+        let handler: (Bool)->Void = {result in
+            if (result){
+                print("result: \(result)")
+                self.checkUser()
+            }
+        }
+        DropboxClientsManager.authorizeFromController(UIApplication.shared, controller: self, openURL: { (url: URL) ->Void in UIApplication.shared.open(url, options: [:], completionHandler: handler)
         })
     }
 
     
     @IBAction func uploadButtonClick(_ sender: Any) {
+
+    }
+    
+    func checkUser(){
         if let client = DropboxClientsManager.authorizedClient {
             
             // Get the current user's account info
             client.users.getCurrentAccount().response { response, error in
                 if let account = response {
                     print("Hello \(account.name.givenName)")
-                    self.successMessage.text = "Hello \(account.name.givenName)"
+                    self.successMessage.text = " You are logged in as \n \(account.name.givenName)"
+                    self.successMessage.textColor = UIColor.green
+                    self.dropBoxLoginButton.isHidden = true
                 } else {
-                    self.successMessage.text = "Unable to connect"
+                    self.successMessage.text = "Not connected to Dropbox"
+                    self.successMessage.textColor = UIColor.red
+                    self.dropBoxLoginButton.isHidden = false
                     print(error!)
                 }
             }
