@@ -18,6 +18,8 @@
 		E19A79A81E8366260088F276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19A79A61E8366260088F276 /* LaunchScreen.storyboard */; };
 		E19A79B11E836A9D0088F276 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A79B01E836A9D0088F276 /* SurveyResponse.swift */; };
 		E19A79B31E839E470088F276 /* BasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A79B21E839E470088F276 /* BasicInfoViewController.swift */; };
+		E19F4BC81E8CA3E20052CCC4 /* DropboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F4BC71E8CA3E20052CCC4 /* DropboxHelper.swift */; };
+		E19F4BD31E8CB0770052CCC4 /* MobileSurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F4BD21E8CB0770052CCC4 /* MobileSurveyTests.swift */; };
 		E1CC19F51E86E82200D2C6B4 /* AddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */; };
 		E1CC19F71E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F61E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift */; };
 		E1CC19F91E877C6800D2C6B4 /* FinishSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F81E877C6800D2C6B4 /* FinishSurveyViewController.swift */; };
@@ -25,6 +27,16 @@
 		E1CC19FD1E878AD500D2C6B4 /* InterestedActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19FC1E878AD500D2C6B4 /* InterestedActivitiesViewController.swift */; };
 		E1CC19FF1E878B1100D2C6B4 /* ReferenceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19FE1E878B1100D2C6B4 /* ReferenceInfoViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E19F4BD51E8CB0770052CCC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E19A79921E8366260088F276 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E19A79991E8366260088F276;
+			remoteInfo = MobileSurvey;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		07B4B10086417718DC4D9FEE /* Pods-MobileSurvey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileSurvey.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileSurvey/Pods-MobileSurvey.release.xcconfig"; sourceTree = "<group>"; };
@@ -43,6 +55,10 @@
 		E19A79A91E8366260088F276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19A79B01E836A9D0088F276 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
 		E19A79B21E839E470088F276 /* BasicInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicInfoViewController.swift; sourceTree = "<group>"; };
+		E19F4BC71E8CA3E20052CCC4 /* DropboxHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxHelper.swift; sourceTree = "<group>"; };
+		E19F4BD01E8CB0760052CCC4 /* MobileSurveyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileSurveyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E19F4BD21E8CB0770052CCC4 /* MobileSurveyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileSurveyTests.swift; sourceTree = "<group>"; };
+		E19F4BD41E8CB0770052CCC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressInfo.swift; sourceTree = "<group>"; };
 		E1CC19F61E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoQuestionsViewController.swift; sourceTree = "<group>"; };
 		E1CC19F81E877C6800D2C6B4 /* FinishSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishSurveyViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +74,13 @@
 			files = (
 				E12A32B51E8A19B900BC4EE8 /* SystemConfiguration.framework in Frameworks */,
 				38CAC3272978C6C861B34B15 /* Pods_MobileSurvey.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E19F4BCD1E8CB0760052CCC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				E12A328E1E88D27100BC4EE8 /* SessionExpirationHandler.swift */,
+				E19F4BC71E8CA3E20052CCC4 /* DropboxHelper.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -96,6 +120,7 @@
 				E12A32AE1E8A14F800BC4EE8 /* MobileSurvey-Bridging-Header.h */,
 				E12A328D1E88D24C00BC4EE8 /* Utilities */,
 				E19A799C1E8366260088F276 /* MobileSurvey */,
+				E19F4BD11E8CB0770052CCC4 /* MobileSurveyTests */,
 				E19A799B1E8366260088F276 /* Products */,
 				AD5838C08C723F19880BE59B /* Pods */,
 				749C366FBC8E78DAFB1B0C56 /* Frameworks */,
@@ -106,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				E19A799A1E8366260088F276 /* MobileSurvey.app */,
+				E19F4BD01E8CB0760052CCC4 /* MobileSurveyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +174,15 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		E19F4BD11E8CB0770052CCC4 /* MobileSurveyTests */ = {
+			isa = PBXGroup;
+			children = (
+				E19F4BD21E8CB0770052CCC4 /* MobileSurveyTests.swift */,
+				E19F4BD41E8CB0770052CCC4 /* Info.plist */,
+			);
+			path = MobileSurveyTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,6 +206,24 @@
 			productReference = E19A799A1E8366260088F276 /* MobileSurvey.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E19F4BCF1E8CB0760052CCC4 /* MobileSurveyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E19F4BD71E8CB0770052CCC4 /* Build configuration list for PBXNativeTarget "MobileSurveyTests" */;
+			buildPhases = (
+				E19F4BCC1E8CB0760052CCC4 /* Sources */,
+				E19F4BCD1E8CB0760052CCC4 /* Frameworks */,
+				E19F4BCE1E8CB0760052CCC4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E19F4BD61E8CB0770052CCC4 /* PBXTargetDependency */,
+			);
+			name = MobileSurveyTests;
+			productName = MobileSurveyTests;
+			productReference = E19F4BD01E8CB0760052CCC4 /* MobileSurveyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -186,6 +239,11 @@
 						DevelopmentTeam = Q7PU779VFB;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+					};
+					E19F4BCF1E8CB0760052CCC4 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E19A79991E8366260088F276;
 					};
 				};
 			};
@@ -203,6 +261,7 @@
 			projectRoot = "";
 			targets = (
 				E19A79991E8366260088F276 /* MobileSurvey */,
+				E19F4BCF1E8CB0760052CCC4 /* MobileSurveyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -215,6 +274,13 @@
 				E19A79A81E8366260088F276 /* LaunchScreen.storyboard in Resources */,
 				E19A79A51E8366260088F276 /* Assets.xcassets in Resources */,
 				E19A79A31E8366260088F276 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E19F4BCE1E8CB0760052CCC4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +349,29 @@
 				E1CC19F91E877C6800D2C6B4 /* FinishSurveyViewController.swift in Sources */,
 				E1CC19FD1E878AD500D2C6B4 /* InterestedActivitiesViewController.swift in Sources */,
 				E1CC19F51E86E82200D2C6B4 /* AddressInfo.swift in Sources */,
+				E19F4BC81E8CA3E20052CCC4 /* DropboxHelper.swift in Sources */,
 				E1CC19FF1E878B1100D2C6B4 /* ReferenceInfoViewController.swift in Sources */,
 				E1CC19F71E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E19F4BCC1E8CB0760052CCC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E19F4BD31E8CB0770052CCC4 /* MobileSurveyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E19F4BD61E8CB0770052CCC4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E19A79991E8366260088F276 /* MobileSurvey */;
+			targetProxy = E19F4BD51E8CB0770052CCC4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E19A79A11E8366260088F276 /* Main.storyboard */ = {
@@ -454,6 +537,32 @@
 			};
 			name = Release;
 		};
+		E19F4BD81E8CB0770052CCC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MobileSurveyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitcompute.MobileSurveyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileSurvey.app/MobileSurvey";
+			};
+			name = Debug;
+		};
+		E19F4BD91E8CB0770052CCC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MobileSurveyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitcompute.MobileSurveyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileSurvey.app/MobileSurvey";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -474,6 +583,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E19F4BD71E8CB0770052CCC4 /* Build configuration list for PBXNativeTarget "MobileSurveyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E19F4BD81E8CB0770052CCC4 /* Debug */,
+				E19F4BD91E8CB0770052CCC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -586,11 +586,9 @@
                         <outlet property="organizationName" destination="Sz8-D9-slN" id="YI4-92-i1p"/>
                         <segue destination="9Vw-6c-zUs" kind="show" identifier="ShowQuestion1" id="3lg-wQ-UDq"/>
                         <segue destination="cIC-5V-VZm" kind="show" identifier="ShowFinishFromBasicInfo" id="b4R-Cx-6hi"/>
-                        <segue destination="lDK-On-gfa" kind="unwind" identifier="UnwindFromBasicInfo" unwindAction="unwindFromBasicInfoWithSegue:" id="lJk-X5-AKb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zR-1v-zCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="lDK-On-gfa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="663.8671875" y="-1166.40625"/>
         </scene>
@@ -936,12 +934,10 @@
                     </view>
                     <connections>
                         <segue destination="diF-zH-U6E" kind="show" identifier="ShowContactInfo" id="WmP-nA-7VX"/>
-                        <segue destination="Mt4-bj-jmG" kind="unwind" identifier="UnwindFromQ1" unwindAction="unwindFromQuestion1WithSegue:" id="FqE-ZB-jD0"/>
                         <segue destination="cIC-5V-VZm" kind="show" identifier="FinishFromQ1" id="up5-zz-9ev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OyM-Wp-jM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Mt4-bj-jmG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1385.7421875" y="-1166.40625"/>
         </scene>
@@ -1310,6 +1306,6 @@
         <image name="mandir reflection no lights" width="1600" height="899"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="up5-zz-9ev"/>
+        <segue reference="b4R-Cx-6hi"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -24,7 +24,6 @@ class SurveyResponse {
         self.HowDidYouHear = ""
         self.OrganizationName = ""
         self.ReferredBy = ""
-        self.ResponseId = ""
         self.StartTime = Date()
         self.SurveyType = ""
     }

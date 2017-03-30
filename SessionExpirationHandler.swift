@@ -18,7 +18,7 @@ class SessionExpirationHandler {
     
     init(viewController:UIViewController, waitTime: Double, sessionAbandonedCallback: @escaping (_ abandoned: Bool)->()){
         self.waitTime = waitTime;
-        self.waitTime = 7; //use for testing
+        //self.waitTime = 7; //use for testing
         self.sessionAbandoned = sessionAbandonedCallback
         timer = Timer.scheduledTimer(timeInterval: self.waitTime, target: self, selector: #selector(self.areYouThereQuestion), userInfo: nil, repeats: true);
         self.viewController = viewController

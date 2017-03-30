@@ -10,9 +10,9 @@ import UIKit
 import SwiftyDropbox
 
 class FinishSurveyViewController: UIViewController {
-
-
-    var filenamePrefix = "MobileSurvey_"
+    
+    
+    var filenamePrefix = "MobileSurvey"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class FinishSurveyViewController: UIViewController {
     @IBAction func restartButtonClick(_ sender: Any) {
         performSegue(withIdentifier: "UnwindFromFinishToStart", sender: nil)
     }
-
+    
     
     // MARK: CSV file creating
     func writeSurveyToCSV() -> Void {
@@ -73,21 +73,32 @@ class FinishSurveyViewController: UIViewController {
         
         let headerText = "DeviceID|SurveyID|Date|Rating|Comment|HowDidYouHear|FirstName|LastName|Address1|Address2|City|State|" +
             "Zip|Country|Organization|Email|KidsInterest|FestivalInterest|SatsangInterest|YouthInterest|" +
-            "AncestralState|AncestralPlace|ReferredBy|SurveyType|StartTime|EndTime|WasAbandoned|WasCancelled\n"
+        "AncestralState|AncestralPlace|ReferredBy|SurveyType|StartTime|EndTime|WasAbandoned|WasCancelled\n"
+        print ("Path is: \(path!)")
         
-        if let fileHandle = FileHandle(forWritingAtPath: (path?.absoluteString)!)
-        {
-            let contentToAppend = createContent()
+        var fileHandle:FileHandle!
+        
+        do {
+            fileHandle = try FileHandle(forWritingTo: path!)
+            
+            let contentToAppend = "\n\(createContent())"
+            
             //Append to file
+            print("Appending to file since it's already there: \(filename)")
             fileHandle.seekToEndOfFile()
             fileHandle.write(contentToAppend.data(using: String.Encoding.utf8)!)
+            
+        } catch {
+            print("Error getting fileHandle")
         }
-        else
+        
+        if (fileHandle == nil)
         {
             //Create new file
             do {
                 AppLevelVariables.todaysFileName = filename
-                let content = "\(headerText)\n\(createContent())"
+                print("Creating new file for today since it's not there: \(filename)")
+                let content = "\(headerText)\(createContent())"
                 try content.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
                 
             }   catch {
@@ -95,10 +106,11 @@ class FinishSurveyViewController: UIViewController {
             }
         }
         
-
+        
+        
         
     }
-
+    
     func checkIfFileExists(filePath:String)->Bool {
         let fileManager = FileManager.default
         // Check if file exists, given its path
@@ -110,56 +122,56 @@ class FinishSurveyViewController: UIViewController {
             return false
         }
     }
-
+    
     func createFileNameForToday(prefix:String)-> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return prefix + "_" + AppLevelVariables.Survey!.DeviceId + "_" + formatter.string(from:Date()) + ".csv"
+        return prefix + "_\(AppLevelVariables.Survey!.DeviceId )_\(formatter.string(from:Date())).csv"
         
     }
+    
+    func createContent() -> String {
+        let content =
+                "\(AppLevelVariables.Survey!.DeviceId)|" +
+                "\(AppLevelVariables.Survey!.ResponseId)|" +
+                "\(AppLevelVariables.Survey!.StartTime)|" +
+                "\(AppLevelVariables.Survey!.Rating)|" +
+                "\(AppLevelVariables.Survey!.Comment)|" +
+                "\(AppLevelVariables.Survey!.HowDidYouHear)|" +
+                "\(AppLevelVariables.Survey!.FirstName)|" +
+                "\(AppLevelVariables.Survey!.LastName)|" +
+                "\(AppLevelVariables.Survey!.Address.AddressLine1)|" +
+                "\(AppLevelVariables.Survey!.Address.AddressLine2)|" +
+                "\(AppLevelVariables.Survey!.Address.City)|" +
+                "\(AppLevelVariables.Survey!.Address.State)|" +
+                "\(AppLevelVariables.Survey!.Address.Zip)|" +
+                "\(AppLevelVariables.Survey!.Address.Country)|" +
+                "\(AppLevelVariables.Survey!.OrganizationName)|" +
+                "\(AppLevelVariables.Survey!.EmailAddress)|" +
+                "\(AppLevelVariables.Survey!.InterestedInKidsActivities)|" +
+                "\(AppLevelVariables.Survey!.InterestedInFestivals)|" +
+                "\(AppLevelVariables.Survey!.InterestedInSatsangActivities)|" +
+                "\(AppLevelVariables.Survey!.InterestedInYouthActivities)|" +
+                "\(AppLevelVariables.Survey!.AncestralState)|" +
+                "\(AppLevelVariables.Survey!.AncestralPlace)|" +
+                "\(AppLevelVariables.Survey!.ReferredBy)|" +
+                "\(AppLevelVariables.Survey!.SurveyType)|" +
+                "\(AppLevelVariables.Survey!.StartTime)|" +
+                "\(AppLevelVariables.Survey!.EndTime)|" +
+                "\(AppLevelVariables.Survey!.WasAbandonded)|" +
+        "\(AppLevelVariables.Survey!.WasCancelled)"
         
-        func createContent() -> String {
-            let content =
-                    "\(AppLevelVariables.Survey!.DeviceId)|" +
-                    "\(AppLevelVariables.Survey!.ResponseId)|" +
-                    "\(AppLevelVariables.Survey!.StartTime)|" +
-                    "\(AppLevelVariables.Survey!.Rating)|" +
-                    "\(AppLevelVariables.Survey!.Comment)|" +
-                    "\(AppLevelVariables.Survey!.HowDidYouHear)|" +
-                    "\(AppLevelVariables.Survey!.FirstName)|" +
-                    "\(AppLevelVariables.Survey!.LastName)|" +
-                    "\(AppLevelVariables.Survey!.Address.AddressLine1)|" +
-                    "\(AppLevelVariables.Survey!.Address.AddressLine2)|" +
-                    "\(AppLevelVariables.Survey!.Address.City)|" +
-                    "\(AppLevelVariables.Survey!.Address.State)|" +
-                    "\(AppLevelVariables.Survey!.Address.Zip)|" +
-                    "\(AppLevelVariables.Survey!.Address.Country)|" +
-                    "\(AppLevelVariables.Survey!.OrganizationName)|" +
-                    "\(AppLevelVariables.Survey!.EmailAddress)|" +
-                    "\(AppLevelVariables.Survey!.InterestedInKidsActivities)|" +
-                    "\(AppLevelVariables.Survey!.InterestedInFestivals)|" +
-                    "\(AppLevelVariables.Survey!.InterestedInSatsangActivities)|" +
-                    "\(AppLevelVariables.Survey!.InterestedInYouthActivities)|" +
-                    "\(AppLevelVariables.Survey!.AncestralState)|" +
-                    "\(AppLevelVariables.Survey!.AncestralPlace)|" +
-                    "\(AppLevelVariables.Survey!.ReferredBy)|" +
-                    "\(AppLevelVariables.Survey!.SurveyType)|" +
-                    "\(AppLevelVariables.Survey!.StartTime)|" +
-                    "\(AppLevelVariables.Survey!.EndTime)|" +
-                    "\(AppLevelVariables.Survey!.WasAbandonded)|" +
-                    "\(AppLevelVariables.Survey!.WasCancelled)"
-            
-            return content
+        return content
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
