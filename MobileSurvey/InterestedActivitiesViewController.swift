@@ -93,12 +93,15 @@ class InterestedActivitiesViewController: UIViewController {
     
     @IBAction func nextButtonClick(_ sender: Any) {
         expirationHandler.invalidateTimer()
+        self.performSegue(withIdentifier: "ShowFinishFromInterestedActivities", sender: nil)
+        /*
         if ((AppLevelVariables.Survey!.InterestedInKidsActivities) == true || (AppLevelVariables.Survey!.InterestedInYouthActivities)  == true || (AppLevelVariables.Survey!.InterestedInSatsangActivities) == true){
             self.performSegue(withIdentifier: "ShowReference", sender: nil)
         }
         else {
             self.performSegue(withIdentifier: "ShowFinishFromInterestedActivities", sender: nil)
-        }
+        }*/
+        
     }
     
 }

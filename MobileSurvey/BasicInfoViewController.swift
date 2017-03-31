@@ -9,7 +9,7 @@
 import UIKit
 import SwiftValidator
 
-class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource, ValidationDelegate{
+class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDelegate{
     
     
     @IBOutlet weak var firstName: UITextField!
@@ -27,6 +27,22 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     var statePickerView: UIPickerView!
     var validator:Validator!
     var expirationHandler:SessionExpirationHandler!
+    
+    var inputToolbar: UIToolbar = {
+        var toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.sizeToFit()
+        
+        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(inputToolbarDonePressed))
+        var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        
+        toolbar.setItems([spaceButton, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        return toolbar
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +62,9 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
             self?.expirationHandler.invalidateTimer()
             self?.performSegue(withIdentifier: "ShowFinishFromBasicInfo", sender: nil)
         }
+        
+        country.delegate = self
+        state.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,7 +79,18 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     @IBAction func nextButtonClicked(_ sender: UIButton) {
         validator.validate(delegate: self as ValidationDelegate)
     }
-
+    
+    func inputToolbarDonePressed() {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if (textField == self.country || textField == state){
+            textField.inputAccessoryView = inputToolbar
+        }
+        return true
+    }
+    
     func validationSuccessful() {
         AppLevelVariables.Survey!.FirstName = firstName.text!
         AppLevelVariables.Survey!.LastName = lastName.text!
@@ -162,9 +192,9 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     
     func setupValidators(){
         validator = Validator()
-        //validator.registerField(textField: firstName, errorLabel: firstNameError, rules: [RequiredRule()])
-        //validator.registerField(textField: lastName, errorLabel: lastNameError, rules: [RequiredRule()])
-        //validator.registerField(textField: country, errorLabel: countryError, rules: [RequiredRule()])
+        validator.registerField(textField: firstName, errorLabel: firstNameError, rules: [RequiredRule()])
+        validator.registerField(textField: lastName, errorLabel: lastNameError, rules: [RequiredRule()])
+        validator.registerField(textField: country, errorLabel: countryError, rules: [RequiredRule()])
     }
     
     

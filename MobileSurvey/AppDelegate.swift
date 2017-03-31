@@ -12,6 +12,7 @@ import SwiftyDropbox
         static var Survey: SurveyResponse?
         static var todaysFileName: String!
         static var lastSentDate:Date!
+        static var screenSaverEnabled:Bool!
     }
 
 @UIApplicationMain

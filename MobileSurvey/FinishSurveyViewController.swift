@@ -45,8 +45,7 @@ class FinishSurveyViewController: UIViewController {
             "\n SurveyType: \(AppLevelVariables.Survey!.SurveyType)" +
             "\n StartTime: \(AppLevelVariables.Survey!.StartTime)" +
             "\n EndTime: \(AppLevelVariables.Survey!.EndTime)" +
-            "\n WasAbandoned: \(AppLevelVariables.Survey!.WasAbandonded)" +
-        "\n WasCancelled: \(AppLevelVariables.Survey!.WasCancelled)"
+            "\n WasAbandoned: \(AppLevelVariables.Survey!.WasAbandonded)"
         print("Survey results are: \(output)")
         writeSurveyToCSV();
         Timer.scheduledTimer(timeInterval: 5, target:self, selector: #selector(FinishSurveyViewController.restartSurvey), userInfo: nil, repeats: false)
@@ -73,7 +72,7 @@ class FinishSurveyViewController: UIViewController {
         
         let headerText = "DeviceID|SurveyID|Date|Rating|Comment|HowDidYouHear|FirstName|LastName|Address1|Address2|City|State|" +
             "Zip|Country|Organization|Email|KidsInterest|FestivalInterest|SatsangInterest|YouthInterest|" +
-        "AncestralState|AncestralPlace|ReferredBy|SurveyType|StartTime|EndTime|WasAbandoned|WasCancelled\n"
+        "AncestralState|AncestralPlace|ReferredBy|SurveyType|StartTime|EndTime|WasAbandoned\n"
         print ("Path is: \(path!)")
         
         var fileHandle:FileHandle!
@@ -158,10 +157,13 @@ class FinishSurveyViewController: UIViewController {
                 "\(AppLevelVariables.Survey!.SurveyType)|" +
                 "\(AppLevelVariables.Survey!.StartTime)|" +
                 "\(AppLevelVariables.Survey!.EndTime)|" +
-                "\(AppLevelVariables.Survey!.WasAbandonded)|" +
-        "\(AppLevelVariables.Survey!.WasCancelled)"
+                "\(AppLevelVariables.Survey!.WasAbandonded)|"
         
         return content
+    }
+    
+    func showTime(){
+        
     }
     
     /*

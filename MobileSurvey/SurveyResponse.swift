@@ -48,7 +48,6 @@ class SurveyResponse {
     var DeviceId:String
     var SurveyType:String
     var EndTime:Date
-    var WasCancelled:Bool = false
     var WasAbandonded:Bool = false
     
 }

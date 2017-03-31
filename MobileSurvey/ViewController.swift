@@ -18,7 +18,10 @@ class ViewController: UIViewController{
     @IBOutlet weak var rating5:UIImageView!
     @IBOutlet weak var button:UIButton?
     @IBOutlet weak var commentBox: UITextView!
-    @IBOutlet weak var howDidYouHearBox: UITextView!
+    //@IBOutlet weak var howDidYouHearBox: UITextView!
+    @IBOutlet weak var statusView: UIView!
+    var timer:Timer!
+    
     var rating:Int = -1
     
     override func viewDidLoad() {
@@ -29,6 +32,12 @@ class ViewController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         resetForm()
         setupRatingsImageViewGestureRecognizers()
+        //doTimedEvents()
+        setupTimer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,16 +87,22 @@ class ViewController: UIViewController{
     }
     
     @IBAction func nextButtonClicked(_ sender: UIButton) {
-        
         AppLevelVariables.Survey!.Rating = rating
         AppLevelVariables.Survey!.Comment = commentBox.text
-        AppLevelVariables.Survey!.HowDidYouHear = howDidYouHearBox.text
+        //AppLevelVariables.Survey!.HowDidYouHear = howDidYouHearBox.text
         performSegue(withIdentifier: "ShowBasicInfo", sender: nil)
     }
     
     @IBAction func unwindFromFinish(segue: UIStoryboardSegue){
         resetForm()
         DropboxHelper.sendStoredSurveysToDropbox()
+        setupTimer()
+    }
+    
+    @IBAction func unwindFromScreenSaver(segue: UIStoryboardSegue){
+        resetForm()
+        DropboxHelper.sendStoredSurveysToDropbox()
+        //setupTimer()
     }
     
     func resetForm()
@@ -100,11 +115,12 @@ class ViewController: UIViewController{
         rating4.image = UIImage(named:"Off")
         rating5.image = UIImage(named:"Off")
         commentBox.text = ""
-        howDidYouHearBox.text = ""
+        //howDidYouHearBox.text = ""
     }
     
     func checkForDeviceId(){
         let deviceID = UserDefaults.standard.string(forKey: "DeviceId")
+        AppLevelVariables.screenSaverEnabled = UserDefaults.standard.bool(forKey: "ScreenSaver")
         if (deviceID == nil || deviceID == ""){
             let alert = UIAlertController(title: "Initial Setup", message: "Please click on the gear icon to setup this device: " , preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -113,6 +129,25 @@ class ViewController: UIViewController{
         else {
             AppLevelVariables.Survey!.DeviceId = deviceID!
         }
+    }
+    
+    func doTimedEvents(){
+        if DropboxClientsManager.authorizedClient != nil {
+            self.statusView.backgroundColor = UIColor.green
+            DropboxHelper.sendStoredSurveysToDropbox()
+        }
+        else {
+            self.statusView.backgroundColor = UIColor.red
+        }
+        
+        if (AppLevelVariables.screenSaverEnabled! == true){
+            performSegue(withIdentifier: "GoToScreenSaver", sender: nil)
+        }
+        
+    }
+    
+    func setupTimer() {
+        self.timer = Timer.scheduledTimer(timeInterval: 3600, target: self, selector: #selector(ViewController.doTimedEvents), userInfo: nil, repeats: true)
     }
 }
 

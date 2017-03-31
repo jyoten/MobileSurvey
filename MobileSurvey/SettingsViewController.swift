@@ -13,6 +13,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var dropBoxLoginButton: UIButton!
     @IBOutlet weak var deviceId: UITextField!
     @IBOutlet weak var successMessage: UILabel!
+    @IBOutlet weak var screenSaverSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +24,12 @@ class SettingsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         deviceId.text = AppLevelVariables.Survey!.DeviceId
         checkUser()
+        if (AppLevelVariables.screenSaverEnabled! == true){
+            screenSaverSwitch.isOn = true
+        }
+        else {
+            screenSaverSwitch.isOn = false
+        }
     }
 
     
@@ -30,6 +38,14 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func switchToggled(_ sender: Any) {
+        if (screenSaverSwitch.isOn){
+            AppLevelVariables.screenSaverEnabled = true
+        }
+        else {
+            AppLevelVariables.screenSaverEnabled = false
+        }
+    }
     @IBAction func dropboxLoginClick(_ sender: Any) {
         let handler: (Bool)->Void = {result in
             if (result){
@@ -64,6 +80,11 @@ class SettingsViewController: UIViewController {
                 }
             }
         }
+        else {
+            self.successMessage.text = "Not connected to Dropbox"
+            self.successMessage.textColor = UIColor.red
+            self.dropBoxLoginButton.isHidden = false
+        }
     }
     
     @IBAction func cancelClick(_ sender: Any) {
@@ -73,8 +94,10 @@ class SettingsViewController: UIViewController {
     @IBAction func saveClick(_ sender: Any) {
         AppLevelVariables.Survey!.DeviceId = deviceId.text!;
         UserDefaults.standard.set(deviceId.text, forKey: "DeviceId")
+        UserDefaults.standard.set(AppLevelVariables.screenSaverEnabled, forKey: "ScreenSaver")
         performSegue(withIdentifier: "UnwindFromSettings", sender: nil)
     }
+    
     /*
     // MARK: - Navigation
 

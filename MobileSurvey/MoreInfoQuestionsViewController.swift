@@ -16,7 +16,7 @@ class MoreInfoQuestionsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-            expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 4)
+            expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 20)
         { [weak self] abandoned in
             print("Session expired")
             self?.expirationHandler.invalidateTimer()
