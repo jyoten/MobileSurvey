@@ -125,13 +125,13 @@ class FinishSurveyViewController: UIViewController {
     func createFileNameForToday(prefix:String)-> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return prefix + "_\(AppLevelVariables.Survey!.DeviceId )_\(formatter.string(from:Date())).csv"
+        return prefix + "_\(AppLevelVariables.deviceId )_\(formatter.string(from:Date())).csv"
         
     }
     
     func createContent() -> String {
         let content =
-                "\(AppLevelVariables.Survey!.DeviceId)|" +
+                "\(AppLevelVariables.deviceId)|" +
                 "\(AppLevelVariables.Survey!.ResponseId)|" +
                 "\(AppLevelVariables.Survey!.StartTime)|" +
                 "\(AppLevelVariables.Survey!.Rating)|" +

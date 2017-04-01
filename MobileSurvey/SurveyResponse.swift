@@ -18,7 +18,6 @@ class SurveyResponse {
         self.AncestralPlace = ""
         self.AncestralState = ""
         self.Comment = ""
-        self.DeviceId = ""
         self.EmailAddress = ""
         self.EndTime = Date()
         self.HowDidYouHear = ""
@@ -45,7 +44,6 @@ class SurveyResponse {
     var ReferredBy:String
     var StartTime:Date
     var ResponseId:String
-    var DeviceId:String
     var SurveyType:String
     var EndTime:Date
     var WasAbandonded:Bool = false

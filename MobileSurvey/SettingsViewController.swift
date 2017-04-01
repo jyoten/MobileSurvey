@@ -14,7 +14,11 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var deviceId: UITextField!
     @IBOutlet weak var successMessage: UILabel!
     @IBOutlet weak var screenSaverSwitch: UISwitch!
+    var selectedStartTime:String!
+    var selectedEndTime:String!
     
+    @IBOutlet weak var startTime: UITextField!
+    @IBOutlet weak var endTime: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +26,7 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        deviceId.text = AppLevelVariables.Survey!.DeviceId
+        deviceId.text = AppLevelVariables.deviceId
         checkUser()
         if (AppLevelVariables.screenSaverEnabled! == true){
             screenSaverSwitch.isOn = true
@@ -30,12 +34,23 @@ class SettingsViewController: UIViewController {
         else {
             screenSaverSwitch.isOn = false
         }
+        startTime.text = AppLevelVariables.screenSaverStartTime
+        endTime.text = AppLevelVariables.screenSaverEndTime
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func startChanged(_ sender: Any) {
+        AppLevelVariables.screenSaverStartTime = startTime.text
+    }
+    
+    
+    @IBAction func endChanged(_ sender: Any) {
+        AppLevelVariables.screenSaverEndTime = endTime.text
     }
     
     @IBAction func switchToggled(_ sender: Any) {
@@ -92,9 +107,11 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func saveClick(_ sender: Any) {
-        AppLevelVariables.Survey!.DeviceId = deviceId.text!;
+        AppLevelVariables.deviceId = deviceId.text!;
         UserDefaults.standard.set(deviceId.text, forKey: "DeviceId")
         UserDefaults.standard.set(AppLevelVariables.screenSaverEnabled, forKey: "ScreenSaver")
+        UserDefaults.standard.set(AppLevelVariables.screenSaverStartTime, forKey: "StartScreenSaver")
+        UserDefaults.standard.set(AppLevelVariables.screenSaverEndTime, forKey: "EndScreenSaver")
         performSegue(withIdentifier: "UnwindFromSettings", sender: nil)
     }
     

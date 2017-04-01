@@ -21,6 +21,7 @@
 		E19F4BC81E8CA3E20052CCC4 /* DropboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F4BC71E8CA3E20052CCC4 /* DropboxHelper.swift */; };
 		E19F4BD31E8CB0770052CCC4 /* MobileSurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F4BD21E8CB0770052CCC4 /* MobileSurveyTests.swift */; };
 		E19F4BDB1E8D9EBF0052CCC4 /* ScreenSaverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F4BDA1E8D9EBF0052CCC4 /* ScreenSaverViewController.swift */; };
+		E19F4BDD1E8E385F0052CCC4 /* ScreenSaverDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F4BDC1E8E385F0052CCC4 /* ScreenSaverDateHelper.swift */; };
 		E1CC19F51E86E82200D2C6B4 /* AddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */; };
 		E1CC19F71E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F61E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift */; };
 		E1CC19F91E877C6800D2C6B4 /* FinishSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19F81E877C6800D2C6B4 /* FinishSurveyViewController.swift */; };
@@ -61,6 +62,7 @@
 		E19F4BD21E8CB0770052CCC4 /* MobileSurveyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileSurveyTests.swift; sourceTree = "<group>"; };
 		E19F4BD41E8CB0770052CCC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19F4BDA1E8D9EBF0052CCC4 /* ScreenSaverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSaverViewController.swift; sourceTree = "<group>"; };
+		E19F4BDC1E8E385F0052CCC4 /* ScreenSaverDateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSaverDateHelper.swift; sourceTree = "<group>"; };
 		E1CC19F41E86E82200D2C6B4 /* AddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressInfo.swift; sourceTree = "<group>"; };
 		E1CC19F61E877BDC00D2C6B4 /* MoreInfoQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoQuestionsViewController.swift; sourceTree = "<group>"; };
 		E1CC19F81E877C6800D2C6B4 /* FinishSurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishSurveyViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				E12A328E1E88D27100BC4EE8 /* SessionExpirationHandler.swift */,
 				E19F4BC71E8CA3E20052CCC4 /* DropboxHelper.swift */,
+				E19F4BDC1E8E385F0052CCC4 /* ScreenSaverDateHelper.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E19F4BDD1E8E385F0052CCC4 /* ScreenSaverDateHelper.swift in Sources */,
 				E19A79B11E836A9D0088F276 /* SurveyResponse.swift in Sources */,
 				E1CC19FB1E8782FD00D2C6B4 /* ContactInfoViewController.swift in Sources */,
 				E12A328C1E883E9F00BC4EE8 /* SettingsViewController.swift in Sources */,

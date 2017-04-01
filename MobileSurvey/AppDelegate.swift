@@ -9,10 +9,13 @@
 import UIKit
 import SwiftyDropbox
     struct AppLevelVariables {
+        static var deviceId:String!
         static var Survey: SurveyResponse?
         static var todaysFileName: String!
         static var lastSentDate:Date!
         static var screenSaverEnabled:Bool!
+        static var screenSaverStartTime:String!
+        static var screenSaverEndTime:String!
     }
 
 @UIApplicationMain
