@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,14 +18,64 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="APM-2" translatesAutoresizingMaskIntoConstraints="NO" id="svk-ab-A7D">
+                                <rect key="frame" x="274" y="654" width="220" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="sW5-VZ-meY"/>
+                                    <constraint firstAttribute="height" constant="150" id="tqe-rU-edq"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Branding-Footer-2---Without-Address" translatesAutoresizingMaskIntoConstraints="NO" id="NQs-1s-yh9">
+                                <rect key="frame" x="0.0" y="944" width="768" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="3q2-lq-4qI"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="Ubo-gf-clz"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="yEw-Vv-HgF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BAPS Swaminarayan Mandir Robbinsville" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MP-20-OfJ">
+                                <rect key="frame" x="209" y="60" width="350" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="ZoE-rR-ZoN"/>
+                                    <constraint firstAttribute="height" constant="150" id="mgR-Ht-Pkc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Survey Kiosk App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-j0-i1Q">
+                                <rect key="frame" x="209" y="240" width="350" height="150"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="41"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="NQs-1s-yh9" secondAttribute="bottom" id="5OJ-eW-Gym"/>
+                            <constraint firstAttribute="trailing" secondItem="NQs-1s-yh9" secondAttribute="trailing" id="B8w-Dc-kht"/>
+                            <constraint firstItem="5MP-20-OfJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CYh-aV-BIR"/>
+                            <constraint firstItem="NQs-1s-yh9" firstAttribute="top" secondItem="svk-ab-A7D" secondAttribute="bottom" constant="140" id="JCu-O4-gfv"/>
+                            <constraint firstItem="8bq-j0-i1Q" firstAttribute="width" secondItem="5MP-20-OfJ" secondAttribute="width" id="NXI-fV-ZXT"/>
+                            <constraint firstItem="5MP-20-OfJ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="40" id="SzL-s0-3S5"/>
+                            <constraint firstItem="8bq-j0-i1Q" firstAttribute="height" secondItem="5MP-20-OfJ" secondAttribute="height" id="ZQX-un-Wuj"/>
+                            <constraint firstItem="svk-ab-A7D" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="cdE-Vi-LZR"/>
+                            <constraint firstItem="NQs-1s-yh9" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="i9x-lB-Naz"/>
+                            <constraint firstItem="8bq-j0-i1Q" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uSc-Xg-BPL"/>
+                            <constraint firstItem="8bq-j0-i1Q" firstAttribute="top" secondItem="5MP-20-OfJ" secondAttribute="bottom" constant="30" id="x8r-EV-TQD"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.34375" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="APM-2" width="971" height="702"/>
+        <image name="Branding-Footer-2---Without-Address" width="2700" height="300"/>
+    </resources>
 </document>

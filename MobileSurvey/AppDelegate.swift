@@ -16,6 +16,7 @@ import SwiftyDropbox
         static var screenSaverEnabled:Bool!
         static var screenSaverStartTime:String!
         static var screenSaverEndTime:String!
+        static var videoOn:Bool!
     }
 
 @UIApplicationMain

@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var deviceId: UITextField!
     @IBOutlet weak var successMessage: UILabel!
     @IBOutlet weak var screenSaverSwitch: UISwitch!
+    @IBOutlet weak var videoSwitch: UISwitch!
     var selectedStartTime:String!
     var selectedEndTime:String!
     
@@ -25,17 +26,27 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         deviceId.text = AppLevelVariables.deviceId
-        checkUser()
         if (AppLevelVariables.screenSaverEnabled! == true){
             screenSaverSwitch.isOn = true
         }
         else {
             screenSaverSwitch.isOn = false
         }
+        if (AppLevelVariables.videoOn == true){
+            videoSwitch.isOn = true
+        }
+        else {
+            videoSwitch.isOn = false
+        }
         startTime.text = AppLevelVariables.screenSaverStartTime
         endTime.text = AppLevelVariables.screenSaverEndTime
+        checkUser()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,6 +72,16 @@ class SettingsViewController: UIViewController {
             AppLevelVariables.screenSaverEnabled = false
         }
     }
+
+    @IBAction func videoSwitchToggled(_ sender: Any) {
+        if (videoSwitch.isOn){
+            AppLevelVariables.videoOn = true
+        }
+        else {
+            AppLevelVariables.videoOn = false
+        }
+    }
+    
     @IBAction func dropboxLoginClick(_ sender: Any) {
         let handler: (Bool)->Void = {result in
             if (result){
@@ -72,10 +93,6 @@ class SettingsViewController: UIViewController {
         })
     }
 
-    
-    @IBAction func uploadButtonClick(_ sender: Any) {
-
-    }
     
     func checkUser(){
         if let client = DropboxClientsManager.authorizedClient {
@@ -110,6 +127,7 @@ class SettingsViewController: UIViewController {
         AppLevelVariables.deviceId = deviceId.text!;
         UserDefaults.standard.set(deviceId.text, forKey: "DeviceId")
         UserDefaults.standard.set(AppLevelVariables.screenSaverEnabled, forKey: "ScreenSaver")
+        UserDefaults.standard.set(AppLevelVariables.videoOn, forKey: "Video")
         UserDefaults.standard.set(AppLevelVariables.screenSaverStartTime, forKey: "StartScreenSaver")
         UserDefaults.standard.set(AppLevelVariables.screenSaverEndTime, forKey: "EndScreenSaver")
         performSegue(withIdentifier: "UnwindFromSettings", sender: nil)

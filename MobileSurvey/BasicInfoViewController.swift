@@ -163,8 +163,8 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     }
     
     func setupCountryPickerView(){
-        countries.append("")
         countries.append("USA")
+        countries.append("Canada")
         countries.append("India")
         countries.append("UK")
         countries.append("---------")

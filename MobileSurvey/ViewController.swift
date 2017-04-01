@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyDropbox
-
+import MediaPlayer
 class ViewController: UIViewController{
     
     @IBOutlet weak var rating1:UIImageView!
@@ -18,12 +18,17 @@ class ViewController: UIViewController{
     @IBOutlet weak var rating5:UIImageView!
     @IBOutlet weak var button:UIButton?
     @IBOutlet weak var commentBox: UITextView!
+    @IBOutlet weak var videoView:UIView!
+    @IBOutlet weak var settingsButton:UIButton!
+    
     //@IBOutlet weak var howDidYouHearBox: UITextView!
     @IBOutlet weak var statusView: UIView!
     var timer2Hrs:Timer!
     var timer1Min:Timer!
     var todaysScreenSaverStartTime:Date!
     var todaysScreenSaverEndTime:Date!
+    var player:AVPlayer!
+    var avPlayerLayer:AVPlayerLayer!
     
     var rating:Int = -1
     
@@ -36,12 +41,18 @@ class ViewController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         resetForm()
         setupRatingsImageViewGestureRecognizers()
-        sendSurveysAndSetServerStatus()
+        sendSurveys()
         setupTimers()
+        setupVideo()
+        if (AppLevelVariables.videoOn == true){
+            player.play()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         invalidateTimers()
+        player.pause()
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,16 +102,26 @@ class ViewController: UIViewController{
         performSegue(withIdentifier: "ShowBasicInfo", sender: nil)
     }
     
+    @IBAction func settingsButtonClicked(_ sender: UIButton){
+        performSegue(withIdentifier: "GoToSettings", sender: nil)
+    }
+    
     @IBAction func unwindFromFinish(segue: UIStoryboardSegue){
         resetForm()
-        DropboxHelper.sendStoredSurveysToDropbox()
+        //DropboxHelper.sendStoredSurveysToDropbox()
         setupTimers()
+        if (AppLevelVariables.videoOn == true){
+            player.play()
+        }
     }
     
     @IBAction func unwindFromScreenSaver(segue: UIStoryboardSegue){
         resetForm()
-        DropboxHelper.sendStoredSurveysToDropbox()
-        //setupTimer()
+        setupTimers()
+        //DropboxHelper.sendStoredSurveysToDropbox()
+        if (AppLevelVariables.videoOn == true){
+            player.play()
+        }
     }
     
     func resetForm()
@@ -114,9 +135,6 @@ class ViewController: UIViewController{
         commentBox.text = ""
         //howDidYouHearBox.text = ""
     }
-    
-    
-    
     
     func readSettings(){
         checkForDeviceId()
@@ -137,6 +155,9 @@ class ViewController: UIViewController{
     
     func checkScreenSaverSettings(){
         AppLevelVariables.screenSaverEnabled = UserDefaults.standard.bool(forKey: "ScreenSaver")
+        AppLevelVariables.videoOn = UserDefaults.standard.bool(forKey: "Video")
+        
+        
         AppLevelVariables.screenSaverStartTime =
             UserDefaults.standard.string(forKey: "StartScreenSaver")
         AppLevelVariables.screenSaverEndTime =
@@ -151,12 +172,13 @@ class ViewController: UIViewController{
             AppLevelVariables.screenSaverEnabled = true
         }
         
+        
         todaysScreenSaverStartTime = ScreenSaverDateHelper.getTodayDateAndTimeFrom(timeOnlyString: AppLevelVariables.screenSaverStartTime)
         todaysScreenSaverEndTime = ScreenSaverDateHelper.getTodayDateAndTimeFrom(timeOnlyString: AppLevelVariables.screenSaverEndTime)
         
     }
     
-    func sendSurveysAndSetServerStatus(){
+    func sendSurveys(){
         if DropboxClientsManager.authorizedClient != nil {
             self.statusView.backgroundColor = UIColor.green
             DropboxHelper.sendStoredSurveysToDropbox()
@@ -166,10 +188,19 @@ class ViewController: UIViewController{
         }
     }
     
+    func setServerStatus(){
+        if DropboxClientsManager.authorizedClient != nil {
+            self.statusView.backgroundColor = UIColor.green
+        }
+        else {
+            self.statusView.backgroundColor = UIColor.red
+        }
+    }
+    
     func setupTimers() {
         self.timer2Hrs = Timer.scheduledTimer(timeInterval: 7200, target: self, selector: #selector(ViewController.doEvery2Hours), userInfo: nil, repeats: true)
         
-        self.timer1Min = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ViewController.doEveryMinute), userInfo: nil, repeats: true)
+        self.timer1Min = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(ViewController.doEveryMinute), userInfo: nil, repeats: true)
     }
     
     func invalidateTimers(){
@@ -178,7 +209,7 @@ class ViewController: UIViewController{
     }
     
     func doEvery2Hours(){
-        sendSurveysAndSetServerStatus()
+        sendSurveys()
     }
     
     func doEveryMinute(){
@@ -186,6 +217,30 @@ class ViewController: UIViewController{
             if (Date() > todaysScreenSaverStartTime! && Date() < todaysScreenSaverEndTime!){
                 performSegue(withIdentifier: "GoToScreenSaver", sender: nil)
             }
+        }
+    }
+    
+    func setupVideo(){
+        let pathToEx1 = Bundle.main.path(forResource: "MandirMoods", ofType: "mp4")
+        let pathUrl = URL.init(fileURLWithPath: pathToEx1!)
+        
+        player = AVPlayer(url: pathUrl)
+        player.isMuted = true
+        avPlayerLayer = AVPlayerLayer(player: player)
+        avPlayerLayer.frame = self.videoView.frame
+        avPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        avPlayerLayer.player?.seek(to: CMTime(seconds: 3, preferredTimescale: 1))
+        self.videoView.layer.addSublayer(avPlayerLayer)
+        
+        player.actionAtItemEnd = AVPlayerActionAtItemEnd.none
+        NotificationCenter.default.addObserver(self, selector: #selector(self.playerItemDidReachEnd),
+                                                         name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                                         object: player.currentItem)
+    }
+    
+    func playerItemDidReachEnd(notification:NSNotification){
+        if let playerItem: AVPlayerItem = notification.object as? AVPlayerItem {
+            playerItem.seek(to: CMTime(seconds: 3, preferredTimescale: 1))
         }
     }
 }

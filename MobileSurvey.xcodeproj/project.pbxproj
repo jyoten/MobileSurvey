@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38CAC3272978C6C861B34B15 /* Pods_MobileSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EFE44018F75BC1DF758A929 /* Pods_MobileSurvey.framework */; };
+		E125CF921E8F614700B663C4 /* MandirMoods.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E125CF911E8F604B00B663C4 /* MandirMoods.mp4 */; };
 		E12A328C1E883E9F00BC4EE8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A328B1E883E9F00BC4EE8 /* SettingsViewController.swift */; };
 		E12A328F1E88D27100BC4EE8 /* SessionExpirationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A328E1E88D27100BC4EE8 /* SessionExpirationHandler.swift */; };
 		E12A32B51E8A19B900BC4EE8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12A32B41E8A19B900BC4EE8 /* SystemConfiguration.framework */; };
@@ -28,6 +29,7 @@
 		E1CC19FB1E8782FD00D2C6B4 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19FA1E8782FD00D2C6B4 /* ContactInfoViewController.swift */; };
 		E1CC19FD1E878AD500D2C6B4 /* InterestedActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19FC1E878AD500D2C6B4 /* InterestedActivitiesViewController.swift */; };
 		E1CC19FF1E878B1100D2C6B4 /* ReferenceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC19FE1E878B1100D2C6B4 /* ReferenceInfoViewController.swift */; };
+		EE36408370840664266717DB /* Pods_MobileSurveyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FFB04F3BA5AEB1794D9D0A /* Pods_MobileSurveyTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +45,11 @@
 /* Begin PBXFileReference section */
 		07B4B10086417718DC4D9FEE /* Pods-MobileSurvey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileSurvey.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileSurvey/Pods-MobileSurvey.release.xcconfig"; sourceTree = "<group>"; };
 		11CD2ED7FCFE36803949E93C /* Pods-MobileSurvey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileSurvey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileSurvey/Pods-MobileSurvey.debug.xcconfig"; sourceTree = "<group>"; };
+		3119736C36A58D44E4DB634F /* Pods-MobileSurveyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileSurveyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileSurveyTests/Pods-MobileSurveyTests.release.xcconfig"; sourceTree = "<group>"; };
 		4EFE44018F75BC1DF758A929 /* Pods_MobileSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55CF1F482F91A0A4DE619DBF /* Pods-MobileSurveyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileSurveyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileSurveyTests/Pods-MobileSurveyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4FFB04F3BA5AEB1794D9D0A /* Pods_MobileSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E125CF911E8F604B00B663C4 /* MandirMoods.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MandirMoods.mp4; sourceTree = "<group>"; };
 		E12A328B1E883E9F00BC4EE8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E12A328E1E88D27100BC4EE8 /* SessionExpirationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionExpirationHandler.swift; sourceTree = "<group>"; };
 		E12A32AE1E8A14F800BC4EE8 /* MobileSurvey-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileSurvey-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -85,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE36408370840664266717DB /* Pods_MobileSurveyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +103,7 @@
 			children = (
 				E12A32B41E8A19B900BC4EE8 /* SystemConfiguration.framework */,
 				4EFE44018F75BC1DF758A929 /* Pods_MobileSurvey.framework */,
+				C4FFB04F3BA5AEB1794D9D0A /* Pods_MobileSurveyTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,6 +113,8 @@
 			children = (
 				11CD2ED7FCFE36803949E93C /* Pods-MobileSurvey.debug.xcconfig */,
 				07B4B10086417718DC4D9FEE /* Pods-MobileSurvey.release.xcconfig */,
+				55CF1F482F91A0A4DE619DBF /* Pods-MobileSurveyTests.debug.xcconfig */,
+				3119736C36A58D44E4DB634F /* Pods-MobileSurveyTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -144,6 +154,7 @@
 		E19A799C1E8366260088F276 /* MobileSurvey */ = {
 			isa = PBXGroup;
 			children = (
+				E125CF911E8F604B00B663C4 /* MandirMoods.mp4 */,
 				E19A79B41E839E580088F276 /* ViewControllers */,
 				E19A79AF1E836A7C0088F276 /* Models */,
 				E19A799D1E8366260088F276 /* AppDelegate.swift */,
@@ -216,9 +227,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E19F4BD71E8CB0770052CCC4 /* Build configuration list for PBXNativeTarget "MobileSurveyTests" */;
 			buildPhases = (
+				CC20F95B5CC46512871872DC /* [CP] Check Pods Manifest.lock */,
 				E19F4BCC1E8CB0760052CCC4 /* Sources */,
 				E19F4BCD1E8CB0760052CCC4 /* Frameworks */,
 				E19F4BCE1E8CB0760052CCC4 /* Resources */,
+				6DD3542542D93025B9E6F410 /* [CP] Embed Pods Frameworks */,
+				BD6F1649072BA8B513C9FFB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E125CF921E8F614700B663C4 /* MandirMoods.mp4 in Resources */,
 				E19A79A81E8366260088F276 /* LaunchScreen.storyboard in Resources */,
 				E19A79A51E8366260088F276 /* Assets.xcassets in Resources */,
 				E19A79A31E8366260088F276 /* Main.storyboard in Resources */,
@@ -308,6 +323,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobileSurvey/Pods-MobileSurvey-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6DD3542542D93025B9E6F410 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobileSurveyTests/Pods-MobileSurveyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B969D2E52732968736E3CC66 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,6 +366,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobileSurvey/Pods-MobileSurvey-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD6F1649072BA8B513C9FFB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobileSurveyTests/Pods-MobileSurveyTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC20F95B5CC46512871872DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -547,6 +607,7 @@
 		};
 		E19F4BD81E8CB0770052CCC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55CF1F482F91A0A4DE619DBF /* Pods-MobileSurveyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MobileSurveyTests/Info.plist;
@@ -560,6 +621,7 @@
 		};
 		E19F4BD91E8CB0770052CCC4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3119736C36A58D44E4DB634F /* Pods-MobileSurveyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MobileSurveyTests/Info.plist;
