@@ -22,7 +22,7 @@ class ScreenSaverViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(moveText), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(moveText), userInfo: nil, repeats: true)
         let screenTapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                    action: #selector (screenTapped(tapGestureRecognizer:)))
         blackScreen?.isUserInteractionEnabled = true
