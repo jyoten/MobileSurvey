@@ -103,7 +103,17 @@ class ViewController: UIViewController{
     }
     
     @IBAction func settingsButtonClicked(_ sender: UIButton){
-        performSegue(withIdentifier: "GoToSettings", sender: nil)
+        
+        let alert = UIAlertController(title: "RBV Survey", message: "Settings not available during Guided Access Mode" , preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        if (!UIAccessibilityIsGuidedAccessEnabled()) {
+            performSegue(withIdentifier: "GoToSettings", sender: nil)
+        }
+        else {
+            self.present(alert, animated: true)
+        }
+
     }
     
     @IBAction func unwindFromFinish(segue: UIStoryboardSegue){

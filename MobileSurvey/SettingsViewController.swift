@@ -27,6 +27,7 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         deviceId.text = AppLevelVariables.deviceId
         if (AppLevelVariables.screenSaverEnabled! == true){
             screenSaverSwitch.isOn = true
