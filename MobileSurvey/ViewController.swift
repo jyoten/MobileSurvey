@@ -52,7 +52,6 @@ class ViewController: UIViewController{
     override func viewWillDisappear(_ animated: Bool) {
         invalidateTimers()
         player.pause()
-        NotificationCenter.default.removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
