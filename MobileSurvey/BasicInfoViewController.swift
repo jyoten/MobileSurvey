@@ -91,6 +91,9 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if (textField == self.country || textField == state){
             textField.inputAccessoryView = inputToolbar
+            if(textField == self.country){
+                textField.text = countries[0]
+            }
         }
         return true
     }

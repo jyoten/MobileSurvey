@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftyDropbox
+import Flurry_iOS_SDK
+
     struct AppLevelVariables {
         static var deviceId:String!
         static var Survey: SurveyResponse?
@@ -28,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         AppLevelVariables.Survey = SurveyResponse()
         DropboxClientsManager.setupWithAppKey("incbe4vieiubspn")
+        
+        Flurry.startSession("BKD92XZ3X6ZH73JV4552")
+        Flurry.logEvent("Started Application")
         return true
     }
 
@@ -58,9 +63,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch authResult {
             case .success(let token):
                 print("Success! User is logged into Dropbox with token:  \(token)")
+                Flurry.logEvent("Logged user into Dropbox")
             case .cancel:
                 print("Authorization flow was manually canceled by user!")
+                Flurry.logEvent("Authorization flow was manually cancelled by user")
             case .error(_, let description):
+                Flurry.logEvent("Error while authenticating with Dropbox")
                 print("Error: \(description)")
             }
         }

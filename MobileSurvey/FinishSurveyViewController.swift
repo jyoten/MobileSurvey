@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyDropbox
-
+import Flurry_iOS_SDK
 class FinishSurveyViewController: UIViewController {
     
     
@@ -70,9 +70,9 @@ class FinishSurveyViewController: UIViewController {
         let filename = createFileNameForToday(prefix: filenamePrefix)//gets file name with todays date appended
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(filename)
         
-        let headerText = "DeviceID|SurveyID|Date|Rating|Comment|HowDidYouHear|FirstName|LastName|Address1|Address2|City|State|" +
-            "Zip|Country|Organization|Email|KidsInterest|FestivalInterest|SatsangInterest|YouthInterest|" +
-        "AncestralState|AncestralPlace|ReferredBy|SurveyType|StartTime|EndTime|WasAbandoned\n"
+        let headerText = "DeviceID,SurveyID,Date,Rating,Comment,HowDidYouHear,FirstName,LastName,Address1,Address2,City,State," +
+            "Zip,Country,Organization,Email,KidsInterest,FestivalInterest,SatsangInterest,YouthInterest," +
+        "AncestralState,AncestralPlace,ReferredBy,SurveyType,StartTime,EndTime,WasAbandoned\n"
         print ("Path is: \(path!)")
         
         var fileHandle:FileHandle!
@@ -86,6 +86,7 @@ class FinishSurveyViewController: UIViewController {
             print("Appending to file since it's already there: \(filename)")
             fileHandle.seekToEndOfFile()
             fileHandle.write(contentToAppend.data(using: String.Encoding.utf8)!)
+            Flurry.logEvent("Appended survey to CSV: " + filename)
             
         } catch {
             print("Error getting fileHandle")
@@ -99,6 +100,7 @@ class FinishSurveyViewController: UIViewController {
                 print("Creating new file for today since it's not there: \(filename)")
                 let content = "\(headerText)\(createContent())"
                 try content.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+                Flurry.logEvent("Created new CSV:" + filename)
                 
             }   catch {
                 print("Error creating \(path)")
@@ -131,39 +133,39 @@ class FinishSurveyViewController: UIViewController {
     
     func createContent() -> String {
         let content =
-                "\(AppLevelVariables.deviceId)|" +
-                "\(AppLevelVariables.Survey!.ResponseId)|" +
-                "\(AppLevelVariables.Survey!.StartTime)|" +
-                "\(AppLevelVariables.Survey!.Rating)|" +
-                "\(AppLevelVariables.Survey!.Comment)|" +
-                "\(AppLevelVariables.Survey!.HowDidYouHear)|" +
-                "\(AppLevelVariables.Survey!.FirstName)|" +
-                "\(AppLevelVariables.Survey!.LastName)|" +
-                "\(AppLevelVariables.Survey!.Address.AddressLine1)|" +
-                "\(AppLevelVariables.Survey!.Address.AddressLine2)|" +
-                "\(AppLevelVariables.Survey!.Address.City)|" +
-                "\(AppLevelVariables.Survey!.Address.State)|" +
-                "\(AppLevelVariables.Survey!.Address.Zip)|" +
-                "\(AppLevelVariables.Survey!.Address.Country)|" +
-                "\(AppLevelVariables.Survey!.OrganizationName)|" +
-                "\(AppLevelVariables.Survey!.EmailAddress)|" +
-                "\(AppLevelVariables.Survey!.InterestedInKidsActivities)|" +
-                "\(AppLevelVariables.Survey!.InterestedInFestivals)|" +
-                "\(AppLevelVariables.Survey!.InterestedInSatsangActivities)|" +
-                "\(AppLevelVariables.Survey!.InterestedInYouthActivities)|" +
-                "\(AppLevelVariables.Survey!.AncestralState)|" +
-                "\(AppLevelVariables.Survey!.AncestralPlace)|" +
-                "\(AppLevelVariables.Survey!.ReferredBy)|" +
-                "\(AppLevelVariables.Survey!.SurveyType)|" +
-                "\(AppLevelVariables.Survey!.StartTime)|" +
-                "\(AppLevelVariables.Survey!.EndTime)|" +
-                "\(AppLevelVariables.Survey!.WasAbandonded)|"
+                "\(AppLevelVariables.deviceId)," +
+                "\(AppLevelVariables.Survey!.ResponseId)," +
+                "\(AppLevelVariables.Survey!.StartTime)," +
+                "\(AppLevelVariables.Survey!.Rating)," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.Comment))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.HowDidYouHear))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.FirstName))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.LastName))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.Address.AddressLine1))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.Address.AddressLine2))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.Address.City))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.Address.State))," +
+                "\(AppLevelVariables.Survey!.Address.Zip)," +
+                "\(AppLevelVariables.Survey!.Address.Country)," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.OrganizationName))," +
+                "\(AppLevelVariables.Survey!.EmailAddress)," +
+                "\(AppLevelVariables.Survey!.InterestedInKidsActivities)," +
+                "\(AppLevelVariables.Survey!.InterestedInFestivals)," +
+                "\(AppLevelVariables.Survey!.InterestedInSatsangActivities)," +
+                "\(AppLevelVariables.Survey!.InterestedInYouthActivities)," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.AncestralState))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.AncestralPlace))," +
+                "\(cleanCommas(input: AppLevelVariables.Survey!.ReferredBy))," +
+                "\(AppLevelVariables.Survey!.SurveyType)," +
+                "\(AppLevelVariables.Survey!.StartTime)," +
+                "\(AppLevelVariables.Survey!.EndTime)," +
+                "\(AppLevelVariables.Survey!.WasAbandonded),"
         
         return content
     }
     
-    func showTime(){
-        
+    func cleanCommas(input: String)->String{
+        return input.replacingOccurrences(of: ",", with: ";")
     }
     
     /*

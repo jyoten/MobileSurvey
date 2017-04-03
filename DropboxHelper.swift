@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyDropbox
+import Flurry_iOS_SDK
 
 class DropboxHelper {
     
@@ -22,6 +23,8 @@ class DropboxHelper {
         for file in filenamesOpt {
             if (fileIsEligibleForSending(file: file, compareDate: Date()))
             {
+                let params = ["filename": file]
+                Flurry.logEvent("Found eligible file, sending to Dropbox.", withParameters: params)
                 sendFile(file: file)
             }
         }
@@ -35,6 +38,8 @@ class DropboxHelper {
                 let content = try String(contentsOf: path!, encoding: String.Encoding.utf8)
                 let fileData = content.data(using: String.Encoding.utf8, allowLossyConversion: false)
                 client.files.upload(path: "/\(file)", input: fileData!)
+                let params = ["filename": file]
+                Flurry.logEvent("Successfully sent file to Dropbox.", withParameters: params)
                 AppLevelVariables.lastSentDate = Date()
                 do{
                     
@@ -45,7 +50,7 @@ class DropboxHelper {
                 }
             }
             catch {
-                print ("Error getting contest of file at path: \(path).  Will continue on without sending.")
+                print ("Error sending file at path: \(path).  Will continue on without sending.")
             }
         }
     }

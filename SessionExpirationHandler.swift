@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Flurry_iOS_SDK
+
 class SessionExpirationHandler {
     
     var abandon:Bool!
@@ -60,6 +62,8 @@ class SessionExpirationHandler {
         print ("self.abandon = \(self.abandon!)")
         if (self.abandon! == true)
         {
+            let params = ["Screen": self.viewController.restorationIdentifier!]
+            Flurry.logEvent("Abandonded Session", withParameters: params)
             self.timer.invalidate()
             self.viewController = nil
             AppLevelVariables.Survey?.WasAbandonded = true;

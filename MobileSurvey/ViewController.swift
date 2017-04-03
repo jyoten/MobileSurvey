@@ -9,6 +9,8 @@
 import UIKit
 import SwiftyDropbox
 import MediaPlayer
+import Flurry_iOS_SDK
+
 class ViewController: UIViewController{
     
     @IBOutlet weak var rating1:UIImageView!
@@ -43,8 +45,10 @@ class ViewController: UIViewController{
         setupRatingsImageViewGestureRecognizers()
         sendSurveys()
         setupTimers()
-        setupVideo()
         if (AppLevelVariables.videoOn == true){
+            if (player == nil){
+                setupVideo()
+            }
             player.play()
         }
     }
@@ -102,14 +106,16 @@ class ViewController: UIViewController{
     }
     
     @IBAction func settingsButtonClicked(_ sender: UIButton){
-        
+        Flurry.logEvent("Tapped on Settings")
         let alert = UIAlertController(title: "RBV Survey", message: "Settings not available during Guided Access Mode" , preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
         if (!UIAccessibilityIsGuidedAccessEnabled()) {
+            Flurry.logEvent("Not in GA mode. Launching Settings")
             performSegue(withIdentifier: "GoToSettings", sender: nil)
         }
         else {
+            Flurry.logEvent("In GA mode. Showing denial of access")
             self.present(alert, animated: true)
         }
 

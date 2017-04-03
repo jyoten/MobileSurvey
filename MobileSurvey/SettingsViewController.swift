@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyDropbox
+import Flurry_iOS_SDK
 
 class SettingsViewController: UIViewController {
     @IBOutlet weak var dropBoxLoginButton: UIButton!
@@ -57,19 +58,25 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func startChanged(_ sender: Any) {
-        AppLevelVariables.screenSaverStartTime = startTime.text
+        let params = ["start" : startTime.text!]
+        Flurry.logEvent("SS start time changed", withParameters: params)
+        AppLevelVariables.screenSaverStartTime = startTime.text!
     }
     
     
     @IBAction func endChanged(_ sender: Any) {
-        AppLevelVariables.screenSaverEndTime = endTime.text
+        let params = ["end" : startTime.text!]
+        Flurry.logEvent("SS end time changed", withParameters: params)
+        AppLevelVariables.screenSaverEndTime = endTime.text!
     }
     
     @IBAction func switchToggled(_ sender: Any) {
         if (screenSaverSwitch.isOn){
+            Flurry.logEvent("Video switched turned on")
             AppLevelVariables.screenSaverEnabled = true
         }
         else {
+            Flurry.logEvent("Video switched turned off")
             AppLevelVariables.screenSaverEnabled = false
         }
     }
@@ -84,6 +91,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func dropboxLoginClick(_ sender: Any) {
+        Flurry.logEvent("Dropbox login clicked")
         let handler: (Bool)->Void = {result in
             if (result){
                 print("result: \(result)")
@@ -101,11 +109,13 @@ class SettingsViewController: UIViewController {
             // Get the current user's account info
             client.users.getCurrentAccount().response { response, error in
                 if let account = response {
-                    print("Hello \(account.name.givenName)")
+                    print("Logged in as: \(account.name.givenName)")
+                    Flurry.logEvent("Logged in to Dropbox as " + account.name.givenName)
                     self.successMessage.text = " You are logged in as \n \(account.name.givenName)"
                     self.successMessage.textColor = UIColor.green
                     //self.dropBoxLoginButton.isHidden = true
                 } else {
+                    Flurry.logEvent("Not connected to Dropbox")
                     self.successMessage.text = "Not connected to Dropbox"
                     self.successMessage.textColor = UIColor.red
                     //self.dropBoxLoginButton.isHidden = false
@@ -114,6 +124,7 @@ class SettingsViewController: UIViewController {
             }
         }
         else {
+            Flurry.logEvent("Not connected to Dropbox")
             self.successMessage.text = "Not connected to Dropbox"
             self.successMessage.textColor = UIColor.red
             //self.dropBoxLoginButton.isHidden = false
@@ -121,10 +132,12 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func cancelClick(_ sender: Any) {
+        Flurry.logEvent("Settings cancelled")
         performSegue(withIdentifier: "UnwindFromSettings", sender: nil)
     }
 
     @IBAction func saveClick(_ sender: Any) {
+        Flurry.logEvent("Settings saved")
         AppLevelVariables.deviceId = deviceId.text!;
         UserDefaults.standard.set(AppLevelVariables.deviceId, forKey: "DeviceId")
         UserDefaults.standard.set(AppLevelVariables.screenSaverEnabled, forKey: "ScreenSaver")

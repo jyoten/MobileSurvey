@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Flurry_iOS_SDK
 
 class ScreenSaverViewController: UIViewController {
 
@@ -31,11 +32,15 @@ class ScreenSaverViewController: UIViewController {
         
         originalBrightness = UIScreen.main.brightness
         UIScreen.main.brightness = (0.1)
+        let params = ["OriginalBrightness": "\(originalBrightness)", "SaverBrightness": "\(0.1)"]
+        Flurry.logEvent("Screensaver started", withParameters: params)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.timer.invalidate()
         UIScreen.main.brightness = originalBrightness
+        let params = ["SaverBrightness": "\(0.1)", "OriginalBrightness": "\(originalBrightness)"]
+        Flurry.logEvent("Screensaver stopped", withParameters: params)
     }
 
     func moveText(){
