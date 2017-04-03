@@ -25,6 +25,7 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     var states: [String] = []
     var abandon:Bool = true
     var statePickerView: UIPickerView!
+    var countryPickerView: UIPickerView!
     var validator:Validator!
     var expirationHandler:SessionExpirationHandler!
     
@@ -82,6 +83,9 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     
     func inputToolbarDonePressed() {
         view.endEditing(true)
+        let row = countryPickerView.selectedRow(inComponent: 0)
+        country.text = countries[row]
+        
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -173,7 +177,7 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
             let name = NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
             countries.append(name)
         }
-        let countryPickerView = UIPickerView()
+        countryPickerView = UIPickerView()
         countryPickerView.delegate = self
         countryPickerView.tag = 1
         country.inputView = countryPickerView

@@ -14,6 +14,7 @@ class ScreenSaverViewController: UIViewController {
     @IBOutlet weak var noticeLabel: UILabel!
     
     var timer:Timer!
+    var originalBrightness:CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,14 @@ class ScreenSaverViewController: UIViewController {
                                                                    action: #selector (screenTapped(tapGestureRecognizer:)))
         blackScreen?.isUserInteractionEnabled = true
         blackScreen?.addGestureRecognizer(screenTapGestureRecognizer)
+        
+        originalBrightness = UIScreen.main.brightness
+        UIScreen.main.brightness = (0.1)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.timer.invalidate()
+        UIScreen.main.brightness = originalBrightness
     }
 
     func moveText(){

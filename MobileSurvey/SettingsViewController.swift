@@ -103,11 +103,11 @@ class SettingsViewController: UIViewController {
                     print("Hello \(account.name.givenName)")
                     self.successMessage.text = " You are logged in as \n \(account.name.givenName)"
                     self.successMessage.textColor = UIColor.green
-                    self.dropBoxLoginButton.isHidden = true
+                    //self.dropBoxLoginButton.isHidden = true
                 } else {
                     self.successMessage.text = "Not connected to Dropbox"
                     self.successMessage.textColor = UIColor.red
-                    self.dropBoxLoginButton.isHidden = false
+                    //self.dropBoxLoginButton.isHidden = false
                     print(error!)
                 }
             }
@@ -115,7 +115,7 @@ class SettingsViewController: UIViewController {
         else {
             self.successMessage.text = "Not connected to Dropbox"
             self.successMessage.textColor = UIColor.red
-            self.dropBoxLoginButton.isHidden = false
+            //self.dropBoxLoginButton.isHidden = false
         }
     }
     
@@ -125,7 +125,7 @@ class SettingsViewController: UIViewController {
 
     @IBAction func saveClick(_ sender: Any) {
         AppLevelVariables.deviceId = deviceId.text!;
-        UserDefaults.standard.set(deviceId.text, forKey: "DeviceId")
+        UserDefaults.standard.set(AppLevelVariables.deviceId, forKey: "DeviceId")
         UserDefaults.standard.set(AppLevelVariables.screenSaverEnabled, forKey: "ScreenSaver")
         UserDefaults.standard.set(AppLevelVariables.videoOn, forKey: "Video")
         UserDefaults.standard.set(AppLevelVariables.screenSaverStartTime, forKey: "StartScreenSaver")
