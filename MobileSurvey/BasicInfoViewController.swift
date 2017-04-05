@@ -9,9 +9,9 @@
 import UIKit
 import SwiftValidator
 
-class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDelegate{
+class BasicInfoViewController: UIViewController, UIPickerViewDataSource, UITextFieldDelegate, ValidationDelegate {
     
-    
+    //MARK: IBOutlets
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var country: UITextField!
@@ -21,6 +21,7 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     @IBOutlet weak var countryError: UILabel!
     @IBOutlet weak var lastNameError: UILabel!
     
+    //MARK: Instance Variables
     var countries: [String] = []
     var states: [String] = []
     var abandon:Bool = true
@@ -51,6 +52,8 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        self.country.resignFirstResponder()
+        self.state.resignFirstResponder()
         expirationHandler.invalidateTimer()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -59,9 +62,10 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         setupValidators()
         expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120)
         { [weak self] abandoned in
-            print("Session expired")
-            self?.expirationHandler.invalidateTimer()
-            self?.performSegue(withIdentifier: "ShowFinishFromBasicInfo", sender: nil)
+            DispatchQueue.main.async {
+                print("Session expired")
+                self?.performSegue(withIdentifier: "ShowFinishFromBasicInfo", sender: nil)
+            }
         }
         
         country.delegate = self
@@ -118,6 +122,17 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         }
     }
     
+    func setupValidators(){
+        validator = Validator()
+        validator.registerField(textField: firstName, errorLabel: firstNameError, rules: [RequiredRule()])
+        validator.registerField(textField: lastName, errorLabel: lastNameError, rules: [RequiredRule()])
+        validator.registerField(textField: country, errorLabel: countryError, rules: [RequiredRule()])
+    }
+}
+
+//MARK: UIPickerViewDelegate
+extension BasicInfoViewController: UIPickerViewDelegate {
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView.tag == 1){
             return countries.count
@@ -166,7 +181,7 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         {
             return states[row]
         }
-
+        
     }
     
     func setupCountryPickerView(){
@@ -196,14 +211,4 @@ class BasicInfoViewController: UIViewController , UIPickerViewDelegate, UIPicker
         statePickerView.tag = 2
         state.inputView = statePickerView
     }
-    
-    func setupValidators(){
-        validator = Validator()
-        validator.registerField(textField: firstName, errorLabel: firstNameError, rules: [RequiredRule()])
-        validator.registerField(textField: lastName, errorLabel: lastNameError, rules: [RequiredRule()])
-        validator.registerField(textField: country, errorLabel: countryError, rules: [RequiredRule()])
-    }
-    
-    
-    
 }

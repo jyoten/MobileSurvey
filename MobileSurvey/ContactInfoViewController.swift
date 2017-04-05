@@ -33,6 +33,12 @@ class ContactInfoViewController: UIViewController, ValidationDelegate , UITextFi
         expirationHandler = SessionExpirationHandler(viewController:self, waitTime: 120)
         { [weak self] abandoned in
             print("Session expired")
+            self?.addressLine1.resignFirstResponder()
+            self?.addressLine2.resignFirstResponder()
+            self?.city.resignFirstResponder()
+            self?.state.resignFirstResponder()
+            self?.zip.resignFirstResponder()
+            self?.email.resignFirstResponder()
             self?.performSegue(withIdentifier: "ShowFinishFromContactInfo", sender: nil)
         }
     }

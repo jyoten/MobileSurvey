@@ -66,10 +66,9 @@ class DropboxHelper {
     }
     
     static func fileIsEligibleForSending(file: String, compareDate:Date)->Bool{
-        if (!file.contains(".csv")){
-            return false
-        }
-        guard let dateFromFile = getDateOfFile(fileName: file) else
+        guard file.contains(".csv"),
+            let dateFromFile = getDateOfFile(fileName: file)
+        else
         {
             return false
         }

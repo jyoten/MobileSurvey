@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		38CAC3272978C6C861B34B15 /* Pods_MobileSurvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EFE44018F75BC1DF758A929 /* Pods_MobileSurvey.framework */; };
-		E125CF921E8F614700B663C4 /* MandirMoods.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E125CF911E8F604B00B663C4 /* MandirMoods.mp4 */; };
 		E12A328C1E883E9F00BC4EE8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A328B1E883E9F00BC4EE8 /* SettingsViewController.swift */; };
 		E12A328F1E88D27100BC4EE8 /* SessionExpirationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12A328E1E88D27100BC4EE8 /* SessionExpirationHandler.swift */; };
 		E12A32B51E8A19B900BC4EE8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E12A32B41E8A19B900BC4EE8 /* SystemConfiguration.framework */; };
@@ -49,7 +48,7 @@
 		4EFE44018F75BC1DF758A929 /* Pods_MobileSurvey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileSurvey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CF1F482F91A0A4DE619DBF /* Pods-MobileSurveyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileSurveyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileSurveyTests/Pods-MobileSurveyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C4FFB04F3BA5AEB1794D9D0A /* Pods_MobileSurveyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileSurveyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E125CF911E8F604B00B663C4 /* MandirMoods.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MandirMoods.mp4; sourceTree = "<group>"; };
+		E1106BB81E9492E40084A012 /* MandirMoods.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MandirMoods.mp4; sourceTree = "<group>"; };
 		E12A328B1E883E9F00BC4EE8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E12A328E1E88D27100BC4EE8 /* SessionExpirationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionExpirationHandler.swift; sourceTree = "<group>"; };
 		E12A32AE1E8A14F800BC4EE8 /* MobileSurvey-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobileSurvey-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -154,7 +153,7 @@
 		E19A799C1E8366260088F276 /* MobileSurvey */ = {
 			isa = PBXGroup;
 			children = (
-				E125CF911E8F604B00B663C4 /* MandirMoods.mp4 */,
+				E1106BB81E9492E40084A012 /* MandirMoods.mp4 */,
 				E19A79B41E839E580088F276 /* ViewControllers */,
 				E19A79AF1E836A7C0088F276 /* Models */,
 				E19A799D1E8366260088F276 /* AppDelegate.swift */,
@@ -291,7 +290,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E125CF921E8F614700B663C4 /* MandirMoods.mp4 in Resources */,
 				E19A79A81E8366260088F276 /* LaunchScreen.storyboard in Resources */,
 				E19A79A51E8366260088F276 /* Assets.xcassets in Resources */,
 				E19A79A31E8366260088F276 /* Main.storyboard in Resources */,

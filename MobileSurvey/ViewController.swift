@@ -46,16 +46,22 @@ class ViewController: UIViewController{
         sendSurveys()
         setupTimers()
         if (AppLevelVariables.videoOn == true){
-            if (player == nil){
-                setupVideo()
+            if let player = player {
+                player.play()
             }
-            player.play()
+            else
+            {
+                setupVideo()
+                player.play()
+            }
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         invalidateTimers()
-        player.pause()
+        if let player = player {
+            player.pause()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,7 +132,13 @@ class ViewController: UIViewController{
         //DropboxHelper.sendStoredSurveysToDropbox()
         setupTimers()
         if (AppLevelVariables.videoOn == true){
-            player.play()
+            if let player = player {
+                player.play()
+            }
+            else {
+                setupVideo()
+                player.play()
+            }
         }
     }
     
